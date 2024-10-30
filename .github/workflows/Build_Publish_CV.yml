@@ -11,54 +11,43 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    environment:
-      name: build_cv
-      url: ${{ steps.artifact-upload-step.outputs.artifact-url }}
+    runs-on: ubuntu-latest    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Install TeX Live
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-full
-
+          sudo apt-get install -y texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
 
       - name: Install Pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
   
       - name: Convert LaTeX to Word
         run: pandoc cv.tex -s -o cv.docx
-            
+
       - name: Convert LaTeX to PDF
-        run: pandoc cv.tex -s -o cv.pdf
-        
+        run: pandoc cv.tex -s -o cv.pdf --pdf-engine=xelatex
+
       - name: Convert LaTeX to HTML
         run: pandoc cv.tex -s -o index.html
 
-      - name: Create public directory
-        run: mkdir public
+      - name: Prepare public directory
+        run: |
+          mkdir public
+          mv index.html cv.pdf cv.docx public/
 
-      - name: List files in workspace
-        run: ls -al
-
-      - name: Move index.html to public
-        run: mv index.html public/
+      - name: Add download links to index.html
+        run: |
+          sed -i '/<\/body>/i <p><a href="cv.pdf">Download PDF version</a></p>' public/index.html
+          sed -i '/<\/body>/i <p><a href="cv.docx">Download DOCX version</a></p>' public/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           name: pages_contents
           path: public
-      - name: Upload Artifact
-        id: artifact-upload-step
-        uses: actions/upload-artifact@v3
-        with:
-          name: Documents
-          path: |
-            cv.docx
-            cv.pdf
 
   deploy:
     needs: build
