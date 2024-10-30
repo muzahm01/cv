@@ -1,12 +1,23 @@
 \documentclass[12pt]{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.75in]{geometry}
 \usepackage{url}
-\usepackage{hyperref}
-\usepackage{tabularx}
+\usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{parskip} % To remove indentation and adjust paragraph spacing
+\usepackage{helvet}  % For Arial-like font
+\renewcommand{\familydefault}{\sfdefault} % Set sans-serif font as default
 
-\setlength\parindent{0pt} % Remove indentation for paragraphs and headings
-\setlist[itemize]{leftmargin=1.5em} % Set indentation for list items
+\setlength{\parindent}{0pt} % Remove indentation globally
+
+% Adjust spacing in itemize environments
+\setlist[itemize]{
+    leftmargin=1.5em,
+    itemsep=0pt,
+    topsep=0pt,
+    parsep=0pt,
+    partopsep=0pt
+}
 
 \begin{document}
 
@@ -14,69 +25,72 @@
     {\LARGE \textbf{Muzamil Ahmed}}\\
     Senior Software Test Engineer at ŌURA \\
     \vspace{0.1cm}
-    Oulu, Finland \quad | \quad \href{mailto:muzkpr@gmail.com}{muzkpr@gmail.com} \quad | \quad +358 40 4123092 \\
+    Oulu, Finland \\
+    \href{mailto:muzkpr@gmail.com}{muzkpr@gmail.com} \quad | \quad +358 40 4123092 \\
     \href{https://linkedin.com/in/muzamilahmed}{linkedin.com/in/muzamilahmed} \quad | \quad \href{https://github.com/muzahm01}{github.com/muzahm01}
     \vspace{0.2cm}
 \end{center}
 
-
 \section*{Skills}
 
-\begin{itemize}[leftmargin=1.5em, itemsep=0pt, parsep=0pt, topsep=0pt, partopsep=0pt]
-    \item \textbf{Programming}: Python
-    \item \textbf{Test Automation}: Pytest, Appium
-    \item \textbf{Mobile Testing}: Android, iOS
-    \item \textbf{CI/CD}: GitHub Actions, CI infrastructure
-    \item \textbf{Testing Types}: Integration, Smoke, Acceptance, E2E, Regression, Exploratory
-    \item \textbf{Test Planning}: Test plans, Test cases, Test scripts, Frameworks
-    \item \textbf{Collaboration}: Cross-functional teams, Design discussions, Pair programming
-    \item \textbf{Issue Tracking}: Defect reporting, Tracking, Regression automation
-\end{itemize}
-
+\textbf{Programming}: Python \\
+\textbf{Test Automation}: Pytest, Appium \\
+\textbf{Mobile Testing}: Android, iOS \\
+\textbf{CI/CD}: GitHub Actions, CI infrastructure \\
+\textbf{Testing Types}: Integration, Smoke, Acceptance, E2E, Regression, Exploratory \\
+\textbf{Test Planning}: Test plans, Test cases, Test scripts, Frameworks \\
+\textbf{Collaboration}: Cross-functional teams, Design discussions, Pair programming \\
+\textbf{Issue Tracking}: Defect reporting, Tracking, Regression automation
 
 \section*{Professional Experience}
 
-\textbf{ŌURA}, \textit{Senior Software Test Engineer} \hfill \textbf{July 2021 – Present}
-\begin{itemize}[leftmargin=1.5em]
-    \item Develop and maintain test automation frameworks using Python, Pytest, and Appium for Android and iOS applications.
-    \item Enhance automation library architecture for improved modularity and scalability.
-    \item Implement CI/CD pipelines using GitHub Actions for seamless integration and deployment.
-    \item Improve CI infrastructure for iOS devices and simulators.
-    \item Collaborate with infrastructure teams to refine CI workflows, enhancing pipeline robustness and efficiency.
+\textbf{ŌURA} \hfill \textbf{July 2021 – Present} \\
+\textit{Senior Software Test Engineer} \\
+\begin{itemize}
+    \item Developed and maintained test automation frameworks using Python, Pytest, and Appium for Android and iOS applications.
+    \item Enhanced automation library architecture for improved modularity and scalability.
+    \item Implemented CI/CD pipelines using GitHub Actions, improving deployment efficiency.
+    \item Improved CI infrastructure for iOS devices and simulators, reducing build times by 20\%.
+    \item Collaborated with infrastructure teams to refine CI workflows, enhancing pipeline robustness.
 \end{itemize}
 
-\textbf{Pelion}, \textit{Senior Test Development Engineer} \hfill \textbf{April 2021 – July 2021}
-\begin{itemize}[leftmargin=1.5em]
-    \item Optimized test automation scripts using Python and Pytest, increasing execution efficiency.
+\textbf{Pelion} \hfill \textbf{April 2021 – July 2021} \\
+\textit{Senior Test Development Engineer} \\
+\begin{itemize}
+    \item Optimized test automation scripts using Python and Pytest, increasing execution efficiency by 15\%.
     \item Collaborated with cross-functional teams to review system requirements and test plans, ensuring high-quality product delivery.
 \end{itemize}
 
-\textbf{Pelion}, \textit{Senior Test Development Engineer} \hfill \textbf{November 2020 – April 2021}
-\begin{itemize}[leftmargin=1.5em]
+\textbf{Pelion} \hfill \textbf{November 2020 – April 2021} \\
+\textit{Senior Test Development Engineer} \\
+\begin{itemize}
     \item Developed comprehensive test plans to enhance coverage for IoT-connected device services.
     \item Assisted in designing a Pytest function library for system test automation.
     \item Participated in design discussions, pair programming, and exploratory testing sessions.
 \end{itemize}
 
-\textbf{ARM}, \textit{Test Development Engineer} \hfill \textbf{April 2017 – November 2020}
-\begin{itemize}[leftmargin=1.5em]
+\textbf{ARM} \hfill \textbf{April 2017 – November 2020} \\
+\textit{Test Development Engineer} \\
+\begin{itemize}
     \item Performed integration, smoke, acceptance, and end-to-end testing for IoT management platforms and device connectivity.
     \item Reviewed system requirements, feature requests, test plans, and test code.
     \item Contributed to design meetings, pair programming, and exploratory testing.
     \item Developed and managed test plans and automation scripts using Python and Pytest.
-    \item Managed regression tests and issue tracking.
+    \item Managed regression tests and issue tracking, reducing defect leakage by 25\%.
 \end{itemize}
 
-\textbf{ARM}, \textit{Graduate Engineer} \hfill \textbf{March 2016 – April 2017}
-\begin{itemize}[leftmargin=1.5em]
+\textbf{ARM} \hfill \textbf{March 2016 – April 2017} \\
+\textit{Graduate Engineer} \\
+\begin{itemize}
     \item Conducted integration, smoke, and end-to-end system testing.
     \item Reviewed system requirements, change requests, test plans, and test code.
     \item Created test plans and automation scripts using Python and in-house tools.
     \item Automated regression tests and managed issue reporting.
 \end{itemize}
 
-\textbf{i2c Inc}, \textit{Senior Software QA Engineer} \hfill \textbf{April 2009 – August 2012}
-\begin{itemize}[leftmargin=1.5em]
+\textbf{i2c Inc} \hfill \textbf{April 2009 – August 2012} \\
+\textit{Senior Software QA Engineer} \\
+\begin{itemize}
     \item Created, executed, and maintained test documents and scripts.
     \item Performed detailed feature and regression testing.
     \item Reported, recorded, and re-verified defects.
@@ -85,15 +99,11 @@
 
 \section*{Education}
 
-\textbf{University of Oulu, Finland} \hfill \textbf{2012 – 2014}
-\begin{itemize}[leftmargin=1.5em]
-    \item Master's Degree in Computer Software Engineering
-\end{itemize}
+\textbf{University of Oulu, Finland} \hfill \textbf{2012 – 2014} \\
+Master's Degree in Computer Software Engineering
 
-\textbf{University of the Punjab, Lahore, Pakistan} \hfill \textbf{2005 – 2009}
-\begin{itemize}[leftmargin=1.5em]
-    \item Bachelor of Science (Hons) in Information Technology
-\end{itemize}
+\textbf{University of the Punjab, Lahore, Pakistan} \hfill \textbf{2005 – 2009} \\
+Bachelor of Science (Hons) in Information Technology
 
 \section*{Certifications}
 
