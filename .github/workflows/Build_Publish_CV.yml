@@ -16,32 +16,46 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-full
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: cv.tex
 
       - name: Install Pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
-
+  
+      - name: Convert LaTeX to Word
+        run: pandoc cv.tex -s -o cv.docx
+            
+      - name: Convert LaTeX to PDF
+        run: pandoc cv.tex -s -o cv.pdf
+        
       - name: Convert LaTeX to HTML
         run: pandoc cv.tex -s -o index.html
 
       - name: Create public directory
         run: mkdir public
 
-      - name: Move index.html to public
-        run: mv index.html public/
-
       - name: List files in workspace
         run: ls -al
 
-      - name: Upload artifact
+      - name: Move index.html to public
+        run: mv index.html public/
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: cv_documents
+          name: pages_contents
           path: public
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Documents
+          path: |
+            cv.docx
+            cv.pdf
 
   deploy:
     needs: build
@@ -57,4 +71,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: cv_documents
+          artifact_name: pages_contents
