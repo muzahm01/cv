@@ -37,11 +37,15 @@ jobs:
         run: |
           mkdir public
           mv index.html cv.pdf cv.docx public/
-
+    
       - name: Add download links to index.html
         run: |
-          sed -i '/<\/body>/i <p><a href="cv.pdf">Download PDF version</a></p>' public/index.html
-          sed -i '/<\/body>/i <p><a href="cv.docx">Download DOCX version</a></p>' public/index.html
+          sed -i '/<\/body>/i \
+          <div style="text-align:center; margin-top:30px; white-space:nowrap;"> \
+            <hr style="margin-bottom:20px;"> \
+            <a href="cv.pdf" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#007BFF; text-decoration:none; border-radius:5px;">Download PDF Version</a> \
+            <a href="cv.docx" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#28A745; text-decoration:none; border-radius:5px;">Download DOCX Version</a> \
+          </div>' public/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
