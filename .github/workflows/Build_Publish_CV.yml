@@ -28,7 +28,7 @@ jobs:
         run: pandoc cv.tex -s -o cv.docx
 
       - name: Convert LaTeX to PDF
-        run: pandoc cv.tex -s -o cv.pdf --pdf-engine=xelatex
+        run: pandoc cv.tex -s -o cv.pdf
 
       - name: Convert LaTeX to HTML
         run: pandoc cv.tex -s -o index.html
