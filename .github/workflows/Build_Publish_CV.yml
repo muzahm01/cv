@@ -12,7 +12,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment:
+      name: build_cv
+      url: ${{ steps.artifact-upload-step.outputs.artifact-url }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -50,6 +52,7 @@ jobs:
           name: pages_contents
           path: public
       - name: Upload Artifact
+        id: artifact-upload-step
         uses: actions/upload-artifact@v3
         with:
           name: Documents
