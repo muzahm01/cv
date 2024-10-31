@@ -31,13 +31,7 @@ jobs:
         run: pdflatex cv.tex
 
       - name: Convert LaTeX to HTML
-        run: pandoc cv.tex -s -o index.html \
-          --css=style.css \
-          --from=latex \
-          --to=html5 \
-          --highlight-style=pygments \          
-          --self-contained \
-          -M title="My CV"
+        run: pandoc cv.tex -s -o index.html --css=style.css --to=html5 --highlight-style=pygments --self-contained -M title="My CV"
 
       - name: List Files
         run: ls -lla
