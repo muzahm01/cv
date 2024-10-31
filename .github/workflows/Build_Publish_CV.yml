@@ -31,7 +31,35 @@ jobs:
         run: pdflatex cv.tex
 
       - name: Convert LaTeX to HTML
-        run: pandoc cv.tex -s -o index.html --css=style.css --to=html5 --highlight-style=pygments --self-contained -M title="My CV"
+        run: pandoc cv.tex -s -o index.html --to=html5 --highlight-style=pygments --self-contained -M title="My CV"
+
+      - name: Add collapsible functionality to index.html
+        run: |
+          # Add CSS for collapsible functionality
+          sed -i '/<\/head>/i \
+          <style>\
+          .collapsible { cursor: pointer; background-color: #f1f1f1; padding: 10px; text-align: left; outline: none; transition: background-color 0.3s ease; }\
+          .collapsible:hover { background-color: #ccc; }\
+          .content { padding: 0 18px; display: none; overflow: hidden; background-color: #f9f9f9; }\
+          </style>' index.html
+          
+          # Add JavaScript for collapsible functionality targeting h1 tags
+          sed -i '/<\/body>/i \
+          <script>\
+          document.addEventListener("DOMContentLoaded", function() {\
+            var headings = document.querySelectorAll("h1");\
+            headings.forEach(function(heading) {\
+              heading.classList.add("collapsible");\
+              heading.addEventListener("click", function() {\
+                var content = this.nextElementSibling;\
+                while (content && content.tagName !== "H1") {\
+                  content.style.display = content.style.display === "none" ? "block" : "none";\
+                  content = content.nextElementSibling;\
+                }\
+              });\
+            });\
+          });\
+          </script>' index.html
 
       - name: List Files
         run: ls -lla
