@@ -35,8 +35,8 @@ jobs:
           --css=style.css \
           --from=latex \
           --to=html5 \
-          --highlight-style=pygments \
-          --toc --toc-depth=2 \
+          --highlight-style=pygments \          
+          --self-contained \
           -M title="My CV"
 
       - name: List Files
@@ -45,7 +45,7 @@ jobs:
       - name: Prepare public directory
         run: |
           mkdir public
-          mv index.html style.css cv.pdf cv.docx public/
+          mv index.html cv.pdf cv.docx public/
     
       - name: Add download links to index.html
         run: |
