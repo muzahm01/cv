@@ -22,8 +22,8 @@ jobs:
           sudo apt-get install -y texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetex
 
       - name: Install Pandoc
-        run: sudo apt-get update && sudo apt-get install -y pandoc
-  
+        run: sudo apt-get install -y pandoc
+    
       - name: Convert LaTeX to Word
         run: pandoc cv.tex -s -o cv.docx
 
@@ -33,51 +33,53 @@ jobs:
       - name: Convert LaTeX to HTML
         run: pandoc cv.tex -s -o index.html --to=html5 --highlight-style=pygments --self-contained -M title="My CV"
 
-      - name: Add collapsible functionality to index.html
+      - name: Add collapsible functionality and download links to index.html
         run: |
-          # Add CSS for collapsible functionality
-          sed -i '/<\/head>/i \
+          # Combine CSS, JavaScript, and download links additions into one sed command
+          sed -i -e '/<\/head>/i \
           <style>\
           .collapsible { cursor: pointer; background-color: #f1f1f1; padding: 10px; text-align: left; outline: none; transition: background-color 0.3s ease; }\
           .collapsible:hover { background-color: #ccc; }\
-          .content { padding: 0 18px; display: none; overflow: hidden; background-color: #f9f9f9; }\
-          </style>' index.html
-          
-          # Add JavaScript for collapsible functionality targeting h1 tags
-          sed -i '/<\/body>/i \
+          .content { padding: 0 18px; overflow: hidden; background-color: #f9f9f9; }\
+          </style>' \
+          -e '/<\/body>/i \
           <script>\
           document.addEventListener("DOMContentLoaded", function() {\
             var headings = document.querySelectorAll("h1");\
             headings.forEach(function(heading) {\
               heading.classList.add("collapsible");\
+              var content = heading.nextElementSibling;\
+              while (content && content.tagName !== "H1") {\
+                if (content.tagName === "SCRIPT") break;\
+                content.style.display = "none";\
+                content = content.nextElementSibling;\
+              }\
               heading.addEventListener("click", function() {\
                 var content = this.nextElementSibling;\
                 while (content && content.tagName !== "H1") {\
+                  if (content.tagName === "SCRIPT") break;\
                   content.style.display = content.style.display === "none" ? "block" : "none";\
                   content = content.nextElementSibling;\
                 }\
               });\
             });\
           });\
-          </script>' index.html
+          </script>\
+          \
+          <div style="text-align:center; margin-top:30px; white-space:nowrap;"> \
+            <hr style="margin-bottom:20px;"> \
+            <a href="cv.pdf" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#007BFF; text-decoration:none; border-radius:5px;">Download PDF Version</a> \
+            <a href="cv.docx" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#28A745; text-decoration:none; border-radius:5px;">Download DOCX Version</a> \
+          </div>' index.html
 
       - name: List Files
-        run: ls -lla
+        run: ls -la
 
       - name: Prepare public directory
         run: |
           mkdir public
           mv index.html cv.pdf cv.docx public/
     
-      - name: Add download links to index.html
-        run: |
-          sed -i '/<\/body>/i \
-          <div style="text-align:center; margin-top:30px; white-space:nowrap;"> \
-            <hr style="margin-bottom:20px;"> \
-            <a href="cv.pdf" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#007BFF; text-decoration:none; border-radius:5px;">Download PDF Version</a> \
-            <a href="cv.docx" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#28A745; text-decoration:none; border-radius:5px;">Download DOCX Version</a> \
-          </div>' public/index.html
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -92,10 +94,8 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
         uses: actions/deploy-pages@v4
         with:
           artifact_name: pages_contents
