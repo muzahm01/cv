@@ -31,7 +31,7 @@ jobs:
         run: pdflatex cv.tex
 
       - name: Convert LaTeX to HTML using custom template
-        run: pandoc cv.tex -s -o index.html --to=html5 --template=template.html --self-contained -M title="Muzamil Ahmed - Portfolio"
+        run: pandoc cv.tex -s -o index.html --to=html5 --template=template.html --section-divs --self-contained -M title="Muzamil Ahmed - Portfolio"
 
       - name: List Files
         run: ls -la
