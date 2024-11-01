@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$title$</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        header h3 {
+            font-weight: normal;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        header a {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        nav {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 0 15px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav a.active {
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+        }
+
+        section {
+            margin: 40px 0;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            display: inline-block;
+        }
+
+        .skills ul, .experience ul, .education ul, .certifications ul, .publications ul {
+            list-style-type: none;
+        }
+
+        .skills ul li, .certifications ul li {
+            padding: 5px 0;
+        }
+
+        .experience-item, .education-item, .publication-item {
+            margin-bottom: 20px;
+        }
+
+        .experience-item h3, .education-item h3, .publication-item h3 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .experience-item h4, .education-item h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #777;
+        }
+
+        .experience-item ul, .education-item ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+
+            nav a {
+                margin: 0 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Muzamil Ahmed</h1>
+        <h3>Senior Software Test Engineer at ŌURA</h3>
+        <p>Oulu, Finland</p>
+        <p>
+            <a href="mailto:muzkpr@gmail.com">muzkpr@gmail.com</a> | 
+            <a href="tel:+358404123092">+358 40 4123092</a>
+        </p>
+        <p>
+            <a href="https://linkedin.com/in/muzamilahmed" target="_blank">LinkedIn</a> | 
+            <a href="https://github.com/muzahm01" target="_blank">GitHub</a>
+        </p>
+        <nav>
+            <a href="#" class="nav-link active" data-section="introduction">Introduction</a>
+            <a href="#" class="nav-link" data-section="skills">Skills</a>
+            <a href="#" class="nav-link" data-section="experience">Experience</a>
+            <a href="#" class="nav-link" data-section="education">Education</a>
+            <a href="#" class="nav-link" data-section="certifications">Certifications</a>
+            <a href="#" class="nav-link" data-section="publications">Publications</a>
+        </nav>
+    </header>
+
+    $body$
+
+    <footer>
+        <p>&copy; 2023 Muzamil Ahmed</p>
+    </footer>
+</div>
+
+<script>
+    // JavaScript for toggling sections
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+
+    function showSection(sectionId) {
+        sections.forEach(section => {
+            if (section.id === sectionId) {
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+        navLinks.forEach(link => {
+            if (link.dataset.section === sectionId) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const sectionId = this.dataset.section;
+            showSection(sectionId);
+        });
+    });
+
+    // Show the introduction section by default
+    showSection('introduction');
+</script>
+
+</body>
+<footer>
+    <p>&copy; 2024 Muzamil Ahmed</p>
+    <div style="text-align:center; margin-top:30px; white-space:nowrap;">
+        <hr style="margin-bottom:20px;">
+        <a href="cv.pdf" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#007BFF; text-decoration:none; border-radius:5px;">Download PDF Version</a>
+        <a href="cv.docx" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#28A745; text-decoration:none; border-radius:5px;">Download DOCX Version</a>
+    </div>
+</footer>
+</html>

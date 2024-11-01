@@ -23,54 +23,15 @@ jobs:
 
       - name: Install Pandoc
         run: sudo apt-get install -y pandoc
-    
+
       - name: Convert LaTeX to Word
         run: pandoc cv.tex -s -o cv.docx
 
       - name: Convert LaTeX to PDF
         run: pdflatex cv.tex
 
-      - name: Convert LaTeX to HTML
-        run: pandoc cv.tex -s -o index.html --to=html5 --highlight-style=pygments --self-contained -M title="My CV"
-
-      - name: Add collapsible functionality and download links to index.html
-        run: |
-          # Combine CSS, JavaScript, and download links additions into one sed command
-          sed -i -e '/<\/head>/i \
-          <style>\
-          .collapsible { cursor: pointer; background-color: #f1f1f1; padding: 10px; text-align: left; outline: none; transition: background-color 0.3s ease; }\
-          .collapsible:hover { background-color: #ccc; }\
-          .content { padding: 0 18px; overflow: hidden; background-color: #f9f9f9; }\
-          </style>' \
-          -e '/<\/body>/i \
-          <script>\
-          document.addEventListener("DOMContentLoaded", function() {\
-            var headings = document.querySelectorAll("h1");\
-            headings.forEach(function(heading) {\
-              heading.classList.add("collapsible");\
-              var content = heading.nextElementSibling;\
-              while (content && content.tagName !== "H1") {\
-                if (content.tagName === "SCRIPT") break;\
-                content.style.display = "none";\
-                content = content.nextElementSibling;\
-              }\
-              heading.addEventListener("click", function() {\
-                var content = this.nextElementSibling;\
-                while (content && content.tagName !== "H1") {\
-                  if (content.tagName === "SCRIPT") break;\
-                  content.style.display = content.style.display === "none" ? "block" : "none";\
-                  content = content.nextElementSibling;\
-                }\
-              });\
-            });\
-          });\
-          </script>\
-          \
-          <div style="text-align:center; margin-top:30px; white-space:nowrap;"> \
-            <hr style="margin-bottom:20px;"> \
-            <a href="cv.pdf" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#007BFF; text-decoration:none; border-radius:5px;">Download PDF Version</a> \
-            <a href="cv.docx" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#28A745; text-decoration:none; border-radius:5px;">Download DOCX Version</a> \
-          </div>' index.html
+      - name: Convert LaTeX to HTML using custom template
+        run: pandoc cv.tex -s -o index.html --to=html5 --template=template.html --self-contained -M title="Muzamil Ahmed - Portfolio"
 
       - name: List Files
         run: ls -la
@@ -79,7 +40,7 @@ jobs:
         run: |
           mkdir public
           mv index.html cv.pdf cv.docx public/
-    
+  
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
