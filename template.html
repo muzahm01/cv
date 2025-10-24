@@ -12,132 +12,358 @@
             box-sizing: border-box;
         }
 
+        /* Dark Theme with Modern Gradient Background */
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
+            color: #e4e6eb;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1422 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 20px 0;
         }
 
+        /* Glassmorphism Container */
         .container {
-            width: 80%;
-            margin: auto;
+            width: 85%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0;
+            background: rgba(26, 31, 58, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
             overflow: hidden;
-            padding: 20px;
-            background-color: #fff;
         }
 
+        /* Header Styling */
         header {
             text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #ddd;
+            padding: 40px 40px 30px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 153, 255, 0.05) 100%);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
         }
 
         header h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
+            font-size: 52px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: -1px;
+            text-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
         }
 
         header h3 {
-            font-weight: normal;
-            color: #777;
-            margin-bottom: 10px;
+            font-weight: 400;
+            color: #a8b2d1;
+            margin-bottom: 12px;
+            font-size: 20px;
         }
 
         header p {
-            color: #777;
+            color: #8892b0;
             margin-bottom: 10px;
+            font-size: 16px;
         }
 
         header a {
-            color: #007BFF;
+            color: #00d4ff;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
 
+        header a:hover {
+            color: #0099ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+        }
+
+        /* Modern Navigation with Pills */
         nav {
-            margin-top: 20px;
+            margin-top: 25px;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         nav a {
             display: inline-block;
-            margin: 0 15px;
-            color: #333;
+            padding: 10px 24px;
+            color: #a8b2d1;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
             cursor: pointer;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 14px;
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+            transform: translateY(-2px);
         }
 
         nav a.active {
-            color: #007BFF;
-            border-bottom: 2px solid #007BFF;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 153, 255, 0.2) 100%);
+            border-color: rgba(0, 212, 255, 0.5);
+            color: #00d4ff;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3), inset 0 0 20px rgba(0, 212, 255, 0.1);
         }
 
+        /* Content Area */
+        main {
+            padding: 40px;
+        }
+
+        /* Sections with Fade Animation */
         section {
-            margin: 40px 0;
+            margin: 0;
             display: none;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
         section.active {
             display: block;
         }
 
-        section h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #007BFF;
-            border-bottom: 2px solid #007BFF;
-            display: inline-block;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
+        /* Section Headers with Gradient */
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border: none;
+            display: block;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff 0%, #0099ff 100%);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        /* List Resets */
         .skills ul, .experience ul, .education ul, .certifications ul, .publications ul {
             list-style-type: none;
         }
 
+        /* Modern Skill Pills */
         .skills ul li, .certifications ul li {
-            padding: 5px 0;
+            padding: 12px 20px;
+            margin: 8px 10px 8px 0;
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 50px;
+            color: #00d4ff;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        .skills ul li:hover, .certifications ul li:hover {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Modern Card Design for Items */
         .experience-item, .education-item, .publication-item {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .experience-item:hover, .education-item:hover, .publication-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 212, 255, 0.1);
         }
 
         .experience-item h3, .education-item h3, .publication-item h3 {
             font-size: 24px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-weight: 600;
         }
 
         .experience-item h4, .education-item h4 {
             font-size: 18px;
-            margin-bottom: 10px;
-            color: #777;
+            margin-bottom: 15px;
+            color: #00d4ff;
+            font-weight: 400;
         }
 
         .experience-item ul, .education-item ul {
-            list-style-type: disc;
-            margin-left: 20px;
+            list-style-type: none;
+            margin-left: 0;
+            margin-top: 15px;
         }
 
+        .experience-item ul li, .education-item ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #a8b2d1;
+        }
+
+        .experience-item ul li::before, .education-item ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+            font-size: 18px;
+        }
+
+        /* Footer Styling */
         footer {
             text-align: center;
-            padding: 20px;
-            border-top: 1px solid #ddd;
-            margin-top: 40px;
+            padding: 40px;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            margin-top: 0;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.03) 0%, rgba(0, 153, 255, 0.03) 100%);
         }
 
+        footer hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 212, 255, 0.3) 50%, transparent 100%);
+            margin-bottom: 30px;
+        }
+
+        /* Modern Download Buttons */
+        footer a {
+            display: inline-block;
+            padding: 14px 32px;
+            margin: 10px 15px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer a:first-of-type {
+            color: #fff;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        footer a:first-of-type:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
+        }
+
+        footer a:nth-of-type(2) {
+            color: #fff;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        footer a:nth-of-type(2):hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.5);
+        }
+
+        footer p {
+            color: #8892b0;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 width: 95%;
+                margin: 20px auto;
+            }
+
+            header {
+                padding: 30px 20px 20px;
             }
 
             header h1 {
                 font-size: 36px;
             }
 
-            nav a {
-                margin: 0 5px;
+            main {
+                padding: 30px 20px;
             }
+
+            nav {
+                gap: 8px;
+            }
+
+            nav a {
+                margin: 0;
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            section h2 {
+                font-size: 28px;
+            }
+
+            .experience-item, .education-item, .publication-item {
+                padding: 20px;
+            }
+
+            footer a {
+                display: block;
+                margin: 10px auto;
+                max-width: 250px;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -155,13 +381,15 @@
         </nav>
     </header>
 
-    $body$
+    <main>
+        $body$
+    </main>
 
     <footer>        
-        <div style="text-align:center; margin-top:30px; white-space:nowrap;">
-            <hr style="margin-bottom:20px;">
-            <a href="cv.pdf" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#007BFF; text-decoration:none; border-radius:5px;">Download PDF Version</a>
-            <a href="cv.docx" style="display:inline-block; padding:12px 24px; margin:10px 15px; font-size:16px; color:#fff; background-color:#28A745; text-decoration:none; border-radius:5px;">Download DOCX Version</a>
+        <div>
+            <hr>
+            <a href="cv.pdf">Download PDF Version</a>
+            <a href="cv.docx">Download DOCX Version</a>
         </div>
         <p>&copy; 2024 Muzamil Ahmed</p>
     </footer>
