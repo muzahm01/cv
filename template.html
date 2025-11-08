@@ -245,18 +245,19 @@
         }
 
         .experience-item ul li, .education-item ul li {
+            display: flex;
+            align-items: flex-start;
             padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
             color: #a8b2d1;
         }
 
         .experience-item ul li::before, .education-item ul li::before {
             content: '▹';
-            position: absolute;
-            left: 0;
             color: #00d4ff;
             font-size: 18px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            line-height: 1.6;
         }
 
         /* Footer Styling */
