@@ -11,36 +11,55 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install TeX Live
+      - name: Install TeX Live and Pandoc
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetex
+          sudo apt-get install -y texlive-latex-base pandoc
 
-      - name: Install Pandoc
-        run: sudo apt-get install -y pandoc
+      - name: Extract Sections from LaTeX
+        run: |
+          # Extract Introduction
+          sed -n '/\\section\*\{Introduction\}/,/\\section\*\{Skills\}/p' cv.tex | sed '1d;$d' > introduction.md
+          # Extract Resume (Experience and Education)
+          echo -e "### Resume\n" > resume.md
+          sed -n '/\\section\*\{Professional Experience\}/,/\\section\*\{Education\}/p' cv.tex | sed '1d;$d' >> resume.md
+          sed -n '/\\section\*\{Education\}/,/\\section\*\{Certifications\}/p' cv.tex | sed '1d;$d' >> resume.md
+          # Extract Skills & Achievements
+          echo -e "### Skills & Achievements\n" > skills-achievements.md
+          sed -n '/\\section\*\{Skills\}/,/\\section\*\{Professional Experience\}/p' cv.tex | sed '1d;$d' >> skills-achievements.md
+          sed -n '/\\section\*\{Certifications\}/,/\\section\*\{Publications\}/p' cv.tex | sed '1d;$d' >> skills-achievements.md
+          sed -n '/\\section\*\{Publications\}/,/\\section\*\{References\}/p' cv.tex | sed '1d;$d' >> skills-achievements.md
+          # Extract References
+          echo -e "### References\n" > references.md
+          sed -n '/\\section\*\{References\}/,/\\end\{document\}/p' cv.tex | sed '1d;$d' >> references.md
 
-      - name: Convert LaTeX to Word
-        run: pandoc cv.tex -s -o cv.docx
+      - name: Convert Markdown to HTML Fragments
+        run: |
+          pandoc -f latex -t html introduction.md -o introduction.html
+          pandoc -f latex -t html resume.md -o resume.html
+          pandoc -f latex -t html skills-achievements.md -o skills-achievements.html
+          pandoc -f latex -t html references.md -o references.html
 
-      - name: Convert LaTeX to PDF
-        run: pdflatex cv.tex
-
-      - name: Convert LaTeX to HTML using custom template
-        run: pandoc cv.tex -s -o index.html --to=html5 --template=template.html --section-divs --self-contained -M title="Muzamil Ahmed - Portfolio"
-
-      - name: List Files
-        run: ls -la
+      - name: Assemble Final HTML
+        run: |
+          BODY_CONTENT=$(cat introduction.html resume.html skills-achievements.html references.html)
+          sed -e "/\\\$body\\\$/r /dev/stdin" -e "/\\\$body\\\$/d" template.html <<< "$BODY_CONTENT" > index.html
+      
+      - name: Generate PDF and DOCX
+        run: |
+          pandoc cv.tex -s -o cv.docx
+          pdflatex cv.tex
 
       - name: Prepare public directory
         run: |
           mkdir public
           mv index.html cv.pdf cv.docx public/
-  
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
