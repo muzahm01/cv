@@ -92,9 +92,11 @@
             text-decoration: none;
             color: #333;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
-        .sidebar nav a:hover {
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
             color: #007bff;
         }
 
@@ -114,6 +116,11 @@
 
         .main-content section {
             margin-bottom: 50px;
+            display: none; /* Hide sections by default */
+        }
+
+        .main-content section.active {
+            display: block; /* Show active section */
         }
 
         /* Pandoc output styling */
@@ -190,13 +197,13 @@
 
         <nav>
             <ul>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#professional-experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#references">References</a></li>
+                <li><a class="nav-link active" data-section="introduction">Introduction</a></li>
+                <li><a class="nav-link" data-section="skills">Skills</a></li>
+                <li><a class="nav-link" data-section="professional-experience">Experience</a></li>
+                <li><a class="nav-link" data-section="education">Education</a></li>
+                <li><a class="nav-link" data-section="certifications">Certifications</a></li>
+                <li><a class="nav-link" data-section="publications">Publications</a></li>
+                <li><a class="nav-link" data-section="references">References</a></li>
             </ul>
         </nav>
 
@@ -209,6 +216,41 @@
         $body$
     </main>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.main-content section');
+
+        function showSection(sectionId) {
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+            navLinks.forEach(link => {
+                if (link.dataset.section === sectionId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const sectionId = this.dataset.section;
+                showSection(sectionId);
+            });
+        });
+
+        // Show the introduction section by default
+        showSection('introduction');
+    });
+</script>
 
 </body>
 </html>
