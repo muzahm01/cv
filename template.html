@@ -12,10 +12,6 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         /* Base Styles */
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -94,7 +90,8 @@
             transition: color 0.3s;
         }
 
-        .sidebar nav a:hover {
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
             color: #007bff;
         }
 
@@ -109,48 +106,66 @@
             width: 65%;
             padding: 60px;
             overflow-y: auto;
-            height: 100vh;
         }
 
-        .main-content section {
+        section {
             margin-bottom: 50px;
         }
 
-        /* Pandoc output styling */
-        .main-content h1, .main-content h2, .main-content h3 {
+        section h3 {
+            font-size: 32px;
             font-weight: 700;
             margin-bottom: 30px;
             padding-bottom: 10px;
             border-bottom: 2px solid #007bff;
             display: inline-block;
         }
-        .main-content h1 { font-size: 32px; }
-        .main-content h2 { font-size: 28px; }
-        .main-content h3 { font-size: 24px; }
 
-        .main-content p {
-            margin-bottom: 15px;
+        .introduction p {
+            font-size: 18px;
             color: #555;
         }
 
-        .main-content ul {
-            list-style-position: outside;
-            padding-left: 20px;
-            margin-bottom: 15px;
+        .item {
+            margin-bottom: 30px;
         }
 
-        .main-content li {
+        .item h4 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .item .sub-heading {
+            font-size: 16px;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .item ul {
+            list-style-position: inside;
+            padding-left: 5px;
+        }
+
+        .item ul li {
             margin-bottom: 8px;
             color: #444;
         }
 
-        .main-content strong {
-            font-weight: 600;
+        .skills-list {
+            list-style: none;
+            padding: 0;
         }
-        
-        .main-content em {
-            font-style: italic;
-            color: #555;
+
+        .skills-list li {
+            margin-bottom: 10px;
+        }
+
+        .skills-list strong {
+            display: inline-block;
+            width: 150px;
+            font-weight: 600;
         }
 
         /* Responsive Design */
@@ -172,7 +187,6 @@
             .main-content {
                 width: 100%;
                 padding: 40px;
-                height: auto;
             }
         }
     </style>
@@ -190,13 +204,10 @@
 
         <nav>
             <ul>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#professional-experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#references">References</a></li>
+                <li><a href="#" class="nav-link active" data-section="introduction">Introduction</a></li>
+                <li><a href="#" class="nav-link" data-section="resume">Resume</a></li>
+                <li><a href="#" class="nav-link" data-section="skills-achievements">Skills & Achievements</a></li>
+                <li><a href="#" class="nav-link" data-section="references">References</a></li>
             </ul>
         </nav>
 
@@ -209,6 +220,41 @@
         $body$
     </main>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        function showSection(sectionId) {
+            sections.forEach(section => {
+                if (section.id === sectionId) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+            navLinks.forEach(link => {
+                if (link.dataset.section === sectionId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const sectionId = this.dataset.section;
+                showSection(sectionId);
+            });
+        });
+
+        // Show the introduction section by default
+        showSection('introduction');
+    });
+</script>
 
 </body>
 </html>
