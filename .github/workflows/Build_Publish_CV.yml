@@ -19,7 +19,7 @@ jobs:
       - name: Install TeX Live and Pandoc
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-latex-extra pandoc
+          sudo apt-get install -y texlive-latex-base pandoc
 
       - name: Extract Sections from LaTeX
         run: |
