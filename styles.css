@@ -2,60 +2,61 @@
    CSS Variables for Easy Theming
    ============================================ */
 :root {
-    /* Colors - Midnight Gold Theme */
-    --color-primary: #d4af37;
-    /* Gold */
-    --color-primary-dark: #b5952f;
-    /* Darker Gold */
-    --color-text-primary: #f8fafc;
-    /* Off-white */
+
+    /* Colors - Deep Slate Theme */
+    --color-primary: #38bdf8;
+    /* Sky Blue 400 */
+    --color-primary-dark: #0284c7;
+    /* Sky Blue 600 */
+    --color-text-primary: #f1f5f9;
+    /* Slate 100 */
     --color-text-secondary: #cbd5e1;
-    /* Light Slate */
+    /* Slate 300 */
     --color-text-muted: #94a3b8;
-    /* Slate */
-    --color-bg-dark: #020617;
-    /* Very Dark Slate */
-    --color-bg-mid: #0f172a;
-    /* Dark Slate */
-    --color-bg-darker: #000000;
-    /* Black */
+    /* Slate 400 */
+    --color-bg-dark: #0f172a;
+    /* Slate 900 */
+    --color-bg-mid: #1e293b;
+    /* Slate 800 */
+    --color-bg-darker: #020617;
+    /* Slate 950 */
 
     /* Spacing */
     --spacing-xs: 8px;
     --spacing-sm: 12px;
     --spacing-md: 20px;
-    --spacing-lg: 30px;
-    --spacing-xl: 40px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
 
     /* Typography */
-    --font-family-heading: 'Playfair Display', serif;
-    --font-family-body: 'Lora', serif;
+    --font-family-heading: 'Outfit', sans-serif;
+    --font-family-body: 'Inter', sans-serif;
 
     --font-size-xs: 13px;
-    --font-size-sm: 15px;
-    --font-size-base: 17px;
-    --font-size-lg: 19px;
-    --font-size-xl: 22px;
-    --font-size-2xl: 26px;
-    --font-size-3xl: 38px;
-    --font-size-4xl: 56px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 32px;
+    --font-size-4xl: 48px;
 
     /* Border radius */
-    --radius-sm: 4px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --radius-full: 50px;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
 
     /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-base: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    --transition-fast: 0.15s ease-out;
+    --transition-base: 0.2s ease-out;
+    --transition-slow: 0.3s ease-out;
 
-    /* Shadows - Subtle & Classy */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
-    --shadow-container: 0 4px 24px rgba(0, 0, 0, 0.5);
+    /* Shadows - Clean & Modern */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-container: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* ============================================
@@ -91,9 +92,11 @@ html {
    ============================================ */
 body {
     font-family: var(--font-family-body);
-    line-height: 1.7;
+    line-height: 1.6;
     color: var(--color-text-primary);
-    background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-mid) 100%);
+    background: var(--color-bg-dark);
+    background-image: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(2, 132, 199, 0.1) 0px, transparent 50%);
     background-attachment: fixed;
     min-height: 100vh;
     padding: var(--spacing-md) 0;
@@ -127,25 +130,22 @@ body {
    Glassmorphism Container
    ============================================ */
 .container {
-    width: 85%;
-    max-width: 1000px;
-    /* Slightly narrower for reading */
+    width: 90%;
+    max-width: 1100px;
     margin: var(--spacing-xl) auto;
     padding: 0;
-    background: rgba(15, 23, 42, 0.7);
-    /* Darker slate */
-    backdrop-filter: blur(12px);
-    /* Less blur */
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(30, 41, 59, 0.7);
+    /* Slate 800 with opacity */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-radius: var(--radius-lg);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    /* Subtler border */
     box-shadow: var(--shadow-container);
     overflow: hidden;
 }
 
 /* Fallback for browsers without backdrop-filter support */
-@supports not (backdrop-filter: blur(12px)) {
+@supports not (backdrop-filter: blur(16px)) {
     .container {
         background: var(--color-bg-mid);
     }
@@ -157,7 +157,7 @@ body {
 header {
     text-align: center;
     padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-lg);
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), transparent);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
 }
@@ -166,14 +166,12 @@ header h1 {
     font-family: var(--font-family-heading);
     font-size: var(--font-size-4xl);
     margin-bottom: 15px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, #fff 50%, var(--color-primary-dark) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-text-primary);
+    background: none;
+    -webkit-text-fill-color: initial;
     font-weight: 700;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.02em;
     text-shadow: none;
-    /* Removed glow */
 }
 
 /* Fallback for gradient text */
@@ -232,7 +230,7 @@ nav {
 
 nav a {
     display: inline-block;
-    padding: 8px 24px;
+    padding: 8px 20px;
     color: var(--color-text-secondary);
     text-decoration: none;
     font-weight: 500;
@@ -242,14 +240,12 @@ nav a {
     border: 1px solid transparent;
     transition: all var(--transition-base);
     font-size: var(--font-size-sm);
-    letter-spacing: 0.5px;
     font-family: var(--font-family-body);
 }
 
 nav a:hover {
-    color: var(--color-primary);
-    background: rgba(255, 255, 255, 0.03);
-    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-primary);
+    background: rgba(255, 255, 255, 0.05);
     transform: translateY(-1px);
 }
 
@@ -264,12 +260,11 @@ nav a:focus-visible {
 }
 
 nav a.active {
-    background: rgba(212, 175, 55, 0.1);
-    /* Gold tint */
-    border-color: var(--color-primary);
+    background: rgba(56, 189, 248, 0.1);
+    /* Sky blue tint */
     color: var(--color-primary);
+    font-weight: 600;
     box-shadow: none;
-    /* Removed glow */
 }
 
 /* ============================================
@@ -285,7 +280,7 @@ main {
 section {
     margin: 0;
     display: none;
-    animation: fadeIn var(--transition-slow) ease-in-out;
+    animation: fadeIn var(--transition-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 section.active {
@@ -311,28 +306,27 @@ section h2 {
     font-family: var(--font-family-heading);
     font-size: var(--font-size-3xl);
     margin-bottom: var(--spacing-lg);
-    color: var(--color-primary);
+    color: var(--color-text-primary);
     background: none;
     -webkit-text-fill-color: initial;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-    /* Subtle gold line */
+    border: none;
     display: block;
     font-weight: 700;
     position: relative;
-    padding-bottom: 15px;
+    padding-bottom: 0;
+    letter-spacing: -0.02em;
 }
 
 /* Fallback for gradient text */
 @supports not (-webkit-background-clip: text) {
     section h2 {
-        color: var(--color-primary);
+        color: var(--color-text-primary);
         -webkit-text-fill-color: inherit;
     }
 }
 
 section h2::after {
     display: none;
-    /* Remove the glowing bar */
 }
 
 /* ============================================
@@ -354,12 +348,12 @@ section h2::after {
    ============================================ */
 .skills ul li,
 .certifications ul li {
-    padding: 6px 16px;
-    margin: var(--spacing-xs) 10px var(--spacing-xs) 0;
+    padding: 6px 14px;
+    margin: var(--spacing-xs) 8px var(--spacing-xs) 0;
     display: inline-block;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
     color: var(--color-text-secondary);
     font-size: var(--font-size-sm);
     font-weight: 500;
@@ -369,11 +363,9 @@ section h2::after {
 
 .skills ul li:hover,
 .certifications ul li:hover {
-    background: rgba(212, 175, 55, 0.1);
-    border-color: var(--color-primary);
+    background: rgba(56, 189, 248, 0.1);
     color: var(--color-primary);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
 }
 
 /* ============================================
@@ -386,9 +378,6 @@ section h2::after {
     padding: 0;
     background: transparent;
     border: none;
-    border-left: 2px solid rgba(255, 255, 255, 0.1);
-    padding-left: 20px;
-    border-radius: 0;
     transition: all var(--transition-base);
 }
 
@@ -396,8 +385,8 @@ section h2::after {
 .education-item:hover,
 .publication-item:hover {
     background: transparent;
-    border-color: var(--color-primary);
-    transform: translateX(5px);
+    border-color: transparent;
+    transform: none;
     box-shadow: none;
 }
 
@@ -406,7 +395,7 @@ section h2::after {
 .publication-item h3 {
     font-family: var(--font-family-heading);
     font-size: var(--font-size-xl);
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     color: var(--color-text-primary);
     font-weight: 600;
 }
@@ -415,17 +404,16 @@ section h2::after {
 .education-item h4 {
     font-family: var(--font-family-body);
     font-size: var(--font-size-base);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     color: var(--color-primary);
     font-weight: 500;
-    font-style: italic;
 }
 
 .experience-item ul,
 .education-item ul {
     list-style-type: none;
     margin-left: 0;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .experience-item ul li,
@@ -440,7 +428,7 @@ section h2::after {
 .experience-item ul li::before,
 .education-item ul li::before {
     content: '•';
-    color: var(--color-primary);
+    color: var(--color-text-muted);
     font-size: var(--font-size-lg);
     margin-right: 12px;
     flex-shrink: 0;
