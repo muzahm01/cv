@@ -2,15 +2,23 @@
    CSS Variables for Easy Theming
    ============================================ */
 :root {
-    /* Colors */
-    --color-primary: #00ffff;
-    --color-primary-dark: #0099ff;
-    --color-text-primary: #e4e6eb;
-    --color-text-secondary: #a8b2d1;
-    --color-text-muted: #8892b0;
-    --color-bg-dark: #0a0e27;
-    --color-bg-mid: #1a1f3a;
-    --color-bg-darker: #0f1422;
+    /* Colors - Midnight Gold Theme */
+    --color-primary: #d4af37;
+    /* Gold */
+    --color-primary-dark: #b5952f;
+    /* Darker Gold */
+    --color-text-primary: #f8fafc;
+    /* Off-white */
+    --color-text-secondary: #cbd5e1;
+    /* Light Slate */
+    --color-text-muted: #94a3b8;
+    /* Slate */
+    --color-bg-dark: #020617;
+    /* Very Dark Slate */
+    --color-bg-mid: #0f172a;
+    /* Dark Slate */
+    --color-bg-darker: #000000;
+    /* Black */
 
     /* Spacing */
     --spacing-xs: 8px;
@@ -20,31 +28,34 @@
     --spacing-xl: 40px;
 
     /* Typography */
+    --font-family-heading: 'Playfair Display', serif;
+    --font-family-body: 'Lora', serif;
+
     --font-size-xs: 13px;
-    --font-size-sm: 14px;
-    --font-size-base: 16px;
-    --font-size-lg: 18px;
-    --font-size-xl: 20px;
-    --font-size-2xl: 24px;
-    --font-size-3xl: 36px;
-    --font-size-4xl: 52px;
+    --font-size-sm: 15px;
+    --font-size-base: 17px;
+    --font-size-lg: 19px;
+    --font-size-xl: 22px;
+    --font-size-2xl: 26px;
+    --font-size-3xl: 38px;
+    --font-size-4xl: 56px;
 
     /* Border radius */
-    --radius-sm: 6px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
     --radius-full: 50px;
 
     /* Transitions */
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
 
-    /* Shadows */
-    --shadow-sm: 0 4px 20px rgba(0, 255, 255, 0.3);
-    --shadow-md: 0 8px 30px rgba(0, 255, 255, 0.5);
-    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 255, 255, 0.1);
-    --shadow-container: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    /* Shadows - Subtle & Classy */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --shadow-container: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
 /* ============================================
@@ -64,6 +75,7 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -78,10 +90,10 @@ html {
    Body & Dark Theme with Gradient Background
    ============================================ */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
-    line-height: 1.6;
+    font-family: var(--font-family-body);
+    line-height: 1.7;
     color: var(--color-text-primary);
-    background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-mid) 50%, var(--color-bg-darker) 100%);
+    background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-mid) 100%);
     background-attachment: fixed;
     min-height: 100vh;
     padding: var(--spacing-md) 0;
@@ -116,22 +128,26 @@ body {
    ============================================ */
 .container {
     width: 85%;
-    max-width: 1200px;
+    max-width: 1000px;
+    /* Slightly narrower for reading */
     margin: var(--spacing-xl) auto;
     padding: 0;
-    background: rgba(26, 31, 58, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(15, 23, 42, 0.7);
+    /* Darker slate */
+    backdrop-filter: blur(12px);
+    /* Less blur */
+    -webkit-backdrop-filter: blur(12px);
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtler border */
     box-shadow: var(--shadow-container);
     overflow: hidden;
 }
 
 /* Fallback for browsers without backdrop-filter support */
-@supports not (backdrop-filter: blur(20px)) {
+@supports not (backdrop-filter: blur(12px)) {
     .container {
-        background: rgba(26, 31, 58, 0.95);
+        background: var(--color-bg-mid);
     }
 }
 
@@ -141,21 +157,23 @@ body {
 header {
     text-align: center;
     padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-lg);
-    background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(0, 153, 255, 0.05) 100%);
-    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
 }
 
 header h1 {
+    font-family: var(--font-family-heading);
     font-size: var(--font-size-4xl);
     margin-bottom: 15px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #fff 50%, var(--color-primary-dark) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-weight: 700;
-    letter-spacing: -1px;
-    text-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+    letter-spacing: -0.5px;
+    text-shadow: none;
+    /* Removed glow */
 }
 
 /* Fallback for gradient text */
@@ -214,24 +232,25 @@ nav {
 
 nav a {
     display: inline-block;
-    padding: 10px var(--spacing-lg);
-    color: var(--color-primary);
+    padding: 8px 24px;
+    color: var(--color-text-secondary);
     text-decoration: none;
     font-weight: 500;
     cursor: pointer;
     border-radius: var(--radius-full);
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    border: 1px solid transparent;
     transition: all var(--transition-base);
     font-size: var(--font-size-sm);
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    font-family: var(--font-family-body);
 }
 
 nav a:hover {
-    background: rgba(0, 255, 255, 0.1);
-    border-color: rgba(0, 255, 255, 0.3);
     color: var(--color-primary);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
 }
 
 nav a:focus {
@@ -240,15 +259,17 @@ nav a:focus {
 }
 
 nav a:focus-visible {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 4px;
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 nav a.active {
-    background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(0, 153, 255, 0.2) 100%);
-    border-color: rgba(0, 255, 255, 0.5);
+    background: rgba(212, 175, 55, 0.1);
+    /* Gold tint */
+    border-color: var(--color-primary);
     color: var(--color-primary);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);
+    box-shadow: none;
+    /* Removed glow */
 }
 
 /* ============================================
@@ -274,8 +295,9 @@ section.active {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -286,13 +308,14 @@ section.active {
    Section Headers with Gradient
    ============================================ */
 section h2 {
+    font-family: var(--font-family-heading);
     font-size: var(--font-size-3xl);
     margin-bottom: var(--spacing-lg);
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    border: none;
+    color: var(--color-primary);
+    background: none;
+    -webkit-text-fill-color: initial;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    /* Subtle gold line */
     display: block;
     font-weight: 700;
     position: relative;
@@ -308,15 +331,8 @@ section h2 {
 }
 
 section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-    border-radius: 2px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    display: none;
+    /* Remove the glowing bar */
 }
 
 /* ============================================
@@ -333,26 +349,31 @@ section h2::after {
 /* ============================================
    Modern Skill Pills
    ============================================ */
+/* ============================================
+   Modern Skill Pills
+   ============================================ */
 .skills ul li,
 .certifications ul li {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 6px 16px;
     margin: var(--spacing-xs) 10px var(--spacing-xs) 0;
     display: inline-block;
-    background: rgba(0, 255, 255, 0.08);
-    border: 1px solid rgba(0, 255, 255, 0.2);
-    border-radius: var(--radius-full);
-    color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-secondary);
     font-size: var(--font-size-sm);
     font-weight: 500;
     transition: all var(--transition-base);
+    font-family: var(--font-family-body);
 }
 
 .skills ul li:hover,
 .certifications ul li:hover {
-    background: rgba(0, 255, 255, 0.15);
-    border-color: rgba(0, 255, 255, 0.4);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2);
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 /* ============================================
@@ -362,62 +383,68 @@ section h2::after {
 .education-item,
 .publication-item {
     margin-bottom: var(--spacing-lg);
-    padding: 25px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-md);
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    padding-left: 20px;
+    border-radius: 0;
     transition: all var(--transition-base);
 }
 
 .experience-item:hover,
 .education-item:hover,
 .publication-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(0, 255, 255, 0.3);
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    background: transparent;
+    border-color: var(--color-primary);
+    transform: translateX(5px);
+    box-shadow: none;
 }
 
 .experience-item h3,
 .education-item h3,
 .publication-item h3 {
-    font-size: var(--font-size-2xl);
-    margin-bottom: var(--spacing-xs);
-    color: #ffffff;
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xl);
+    margin-bottom: 5px;
+    color: var(--color-text-primary);
     font-weight: 600;
 }
 
 .experience-item h4,
 .education-item h4 {
-    font-size: var(--font-size-lg);
-    margin-bottom: 15px;
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-base);
+    margin-bottom: 10px;
     color: var(--color-primary);
-    font-weight: 400;
+    font-weight: 500;
+    font-style: italic;
 }
 
 .experience-item ul,
 .education-item ul {
     list-style-type: none;
     margin-left: 0;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .experience-item ul li,
 .education-item ul li {
     display: flex;
     align-items: flex-start;
-    padding: var(--spacing-xs) 0;
+    padding: 4px 0;
     color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
 }
 
 .experience-item ul li::before,
 .education-item ul li::before {
-    content: '▹';
+    content: '•';
     color: var(--color-primary);
     font-size: var(--font-size-lg);
-    margin-right: 15px;
+    margin-right: 12px;
     flex-shrink: 0;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 /* ============================================
