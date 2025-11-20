@@ -1,1 +1,52 @@
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# Build outputs (keep tracked in git for deployment, but ignore locally if needed)
+# cv.pdf
+# cv.docx
+# index.html
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Node modules (if adding build tools later)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python (if adding scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Editor backups
+*.bak

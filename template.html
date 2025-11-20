@@ -2,439 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$title$</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        /* CSS Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        /* Dark Theme with Modern Gradient Background */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
-            line-height: 1.6;
-            color: #e4e6eb;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1422 100%);
-            background-attachment: fixed;
-            min-height: 100vh;
-            padding: 20px 0;
-        }
+    <!-- Primary Meta Tags -->
+    <title>$title$</title>
+    <meta name="title" content="Muzamil Ahmed - Software Engineer & DevOps Specialist">
+    <meta name="description" content="Experienced Software Engineer specializing in DevOps, cloud infrastructure, and full-stack development. View my professional CV, skills, and experience.">
+    <meta name="author" content="Muzamil Ahmed">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Software Engineer, DevOps, Cloud Infrastructure, Full Stack Developer, Muzamil Ahmed">
 
-        /* Glassmorphism Container */
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0;
-            background: rgba(26, 31, 58, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-        }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://muzahm01.github.io/cv/">
+    <meta property="og:title" content="Muzamil Ahmed - Software Engineer & DevOps Specialist">
+    <meta property="og:description" content="Experienced Software Engineer specializing in DevOps, cloud infrastructure, and full-stack development.">
+    <meta property="og:image" content="https://muzahm01.github.io/cv/og-image.png">
 
-        /* Header Styling */
-        header {
-            text-align: center;
-            padding: 40px 40px 30px;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(0, 153, 255, 0.05) 100%);
-            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
-            position: relative;
-        }
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://muzahm01.github.io/cv/">
+    <meta property="twitter:title" content="Muzamil Ahmed - Software Engineer & DevOps Specialist">
+    <meta property="twitter:description" content="Experienced Software Engineer specializing in DevOps, cloud infrastructure, and full-stack development.">
+    <meta property="twitter:image" content="https://muzahm01.github.io/cv/og-image.png">
 
-        header h1 {
-            font-size: 52px;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #00ffff 0%, #0099ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            letter-spacing: -1px;
-            text-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
-        }
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://muzahm01.github.io/cv/">
 
-        header h3 {
-            font-weight: 400;
-            color: #a8b2d1;
-            margin-bottom: 12px;
-            font-size: 20px;
-        }
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
-        header p {
-            color: #8892b0;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 
-        header a {
-            color: #00ffff;
-            text-decoration: none;
-            margin: 0 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            padding: 4px 8px;
-            border-radius: 6px;
-        }
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Muzamil Ahmed",
+      "jobTitle": "Software Engineer",
+      "url": "https://muzahm01.github.io/cv/",
+      "sameAs": [
+        "https://linkedin.com/in/muzamilahmed",
+        "https://github.com/muzahm01"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Qcentris Technology Solutions Limited"
+      }
+    }
+    </script>
 
-        header a:hover {
-            color: #fff;
-            background: rgba(100, 181, 246, 0.1);
-            text-shadow: 0 0 15px rgba(100, 181, 246, 0.3);
-        }
-
-        /* Modern Navigation with Pills */
-        nav {
-            margin-top: 25px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        nav a {
-            display: inline-block;
-            padding: 10px 24px;
-            color: #00ffff;
-            text-decoration: none;
-            font-weight: 500;
-            cursor: pointer;
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 14px;
-            letter-spacing: 0.3px;
-        }
-
-        nav a:hover {
-            background: rgba(0, 255, 255, 0.1);
-            border-color: rgba(0, 255, 255, 0.3);
-            color: #00ffff;
-            transform: translateY(-2px);
-        }
-
-        nav a.active {
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(0, 153, 255, 0.2) 100%);
-            border-color: rgba(0, 255, 255, 0.5);
-            color: #00ffff;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);
-        }
-
-        /* Content Area */
-        main {
-            padding: 40px;
-        }
-
-        /* Sections with Fade Animation */
-        section {
-            margin: 0;
-            display: none;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+    <!-- All styles moved to external styles.css -->
+    <!-- Inline fallback for critical styles (optional) -->
+    <noscript>
+        <style>
+            /* Fallback styles if JavaScript is disabled */
+            section {
+                display: block !important;
+                margin-bottom: 40px;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            nav a.active {
+                display: none;
             }
-        }
-
-        /* Section Headers with Gradient */
-        section h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #00ffff 0%, #0099ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            border: none;
-            display: block;
-            font-weight: 700;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #00ffff 0%, #0099ff 100%);
-            border-radius: 2px;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-        }
-
-        /* List Resets */
-        .skills ul, .experience ul, .education ul, .certifications ul, .publications ul {
-            list-style-type: none;
-        }
-
-        /* Modern Skill Pills */
-        .skills ul li, .certifications ul li {
-            padding: 12px 20px;
-            margin: 8px 10px 8px 0;
-            display: inline-block;
-            background: rgba(0, 255, 255, 0.08);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 50px;
-            color: #00ffff;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .skills ul li:hover, .certifications ul li:hover {
-            background: rgba(0, 255, 255, 0.15);
-            border-color: rgba(0, 255, 255, 0.4);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2);
-        }
-
-        /* Modern Card Design for Items */
-        .experience-item, .education-item, .publication-item {
-            margin-bottom: 30px;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .experience-item:hover, .education-item:hover, .publication-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(0, 255, 255, 0.3);
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 255, 255, 0.1);
-        }
-
-        .experience-item h3, .education-item h3, .publication-item h3 {
-            font-size: 24px;
-            margin-bottom: 8px;
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .experience-item h4, .education-item h4 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #00ffff;
-            font-weight: 400;
-        }
-
-        .experience-item ul, .education-item ul {
-            list-style-type: none;
-            margin-left: 0;
-            margin-top: 15px;
-        }
-
-        .experience-item ul li, .education-item ul li {
-            display: flex;
-            align-items: flex-start;
-            padding: 8px 0;
-            color: #a8b2d1;
-        }
-
-        .experience-item ul li::before, .education-item ul li::before {
-            content: '▹';
-            color: #00ffff;
-            font-size: 18px;
-            margin-right: 15px;
-            flex-shrink: 0;
-            line-height: 1.6;
-        }
-
-        /* Footer Styling */
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid rgba(0, 255, 255, 0.2);
-            margin-top: 0;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.03) 0%, rgba(0, 153, 255, 0.03) 100%);
-        }
-
-        footer hr {
-            border: none;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.3) 50%, transparent 100%);
-            margin-bottom: 30px;
-        }
-
-        /* Modern Download Buttons */
-        footer a {
-            display: inline-block;
-            padding: 14px 32px;
-            margin: 10px 15px;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid;
-            position: relative;
-            overflow: hidden;
-        }
-
-        footer a:first-of-type {
-            color: #fff;
-            background: linear-gradient(135deg, #00ffff 0%, #0099ff 100%);
-            border-color: rgba(0, 255, 255, 0.5);
-            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
-        }
-
-        footer a:first-of-type:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 255, 255, 0.5);
-        }
-
-        footer a:nth-of-type(2) {
-            color: #e4e6eb;
-            background: transparent;
-            border-color: #e4e6eb;
-            box-shadow: none;
-        }
-
-        footer a:nth-of-type(2):hover {
-            transform: translateY(-3px);
-            background: rgba(228, 230, 235, 0.1);
-            color: #fff;
-            box-shadow: 0 8px 30px rgba(228, 230, 235, 0.2);
-        }
-
-        footer p {
-            color: #8892b0;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                margin: 20px auto;
-            }
-
-            header {
-                padding: 30px 20px 20px;
-            }
-
-            header h1 {
-                font-size: 36px;
-            }
-
-            main {
-                padding: 30px 20px;
-            }
-
-            nav {
-                gap: 8px;
-            }
-
-            nav a {
-                margin: 0;
-                padding: 8px 16px;
-                font-size: 13px;
-            }
-
-            section h2 {
-                font-size: 28px;
-            }
-
-            .experience-item, .education-item, .publication-item {
-                padding: 20px;
-            }
-
-            footer a {
-                display: block;
-                margin: 10px auto;
-                max-width: 250px;
-            }
-        }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+        </style>
+    </noscript>
 </head>
 <body>
 
+<!-- Skip to Content Link for Accessibility -->
+<a href="#main-content" class="skip-to-content">Skip to main content</a>
+
 <div class="container">
     <header>
-        <nav>
-            <a href="#" class="nav-link active" data-section="introduction">Introduction</a>
-            <a href="#" class="nav-link" data-section="skills">Skills</a>
-            <a href="#" class="nav-link" data-section="experience">Experience</a>
-            <a href="#" class="nav-link" data-section="education">Education</a>
-            <a href="#" class="nav-link" data-section="certifications">Certifications</a>
-            <a href="#" class="nav-link" data-section="publications">Publications</a>
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="#introduction" class="nav-link active" data-section="introduction" role="button" aria-current="page">Introduction</a>
+            <a href="#skills" class="nav-link" data-section="skills" role="button">Skills</a>
+            <a href="#experience" class="nav-link" data-section="experience" role="button">Experience</a>
+            <a href="#education" class="nav-link" data-section="education" role="button">Education</a>
+            <a href="#certifications" class="nav-link" data-section="certifications" role="button">Certifications</a>
+            <a href="#publications" class="nav-link" data-section="publications" role="button">Publications</a>
         </nav>
     </header>
 
-    <main>
+    <main id="main-content" role="main" aria-label="Resume content">
         $body$
     </main>
 
-    <footer>        
+    <footer role="contentinfo">
         <div>
             <hr>
-            <a href="cv.pdf">Download PDF Version</a>
-            <a href="cv.docx">Download DOCX Version</a>
+            <a href="cv.pdf" download="Muzamil_Ahmed_CV.pdf" aria-label="Download CV in PDF format">Download PDF Version</a>
+            <a href="cv.docx" download="Muzamil_Ahmed_CV.docx" aria-label="Download CV in DOCX format">Download DOCX Version</a>
         </div>
-        <p>&copy; 2024 Muzamil Ahmed</p>
+        <p>&copy; 2024 Muzamil Ahmed. All rights reserved.</p>
     </footer>
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section');
-    
-        function showSection(sectionId) {
-            sections.forEach(section => {
-                if (section.id === sectionId) {
-                    section.classList.add('active');
-                } else {
-                    section.classList.remove('active');
-                }
-            });
-            navLinks.forEach(link => {
-                if (link.dataset.section === sectionId) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-        }
-    
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const sectionId = this.dataset.section;
-                showSection(sectionId);
-            });
-        });
-    
-        // Show the introduction section by default
-        showSection('introduction');
-    });
-</script>    
+<!-- External JavaScript -->
+<script src="script.js"></script>
 
 </body>
 </html>

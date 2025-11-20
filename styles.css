@@ -1,0 +1,648 @@
+/* ============================================
+   CSS Variables for Easy Theming
+   ============================================ */
+:root {
+    /* Colors */
+    --color-primary: #00ffff;
+    --color-primary-dark: #0099ff;
+    --color-text-primary: #e4e6eb;
+    --color-text-secondary: #a8b2d1;
+    --color-text-muted: #8892b0;
+    --color-bg-dark: #0a0e27;
+    --color-bg-mid: #1a1f3a;
+    --color-bg-darker: #0f1422;
+
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 40px;
+
+    /* Typography */
+    --font-size-xs: 13px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 36px;
+    --font-size-4xl: 52px;
+
+    /* Border radius */
+    --radius-sm: 6px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 50px;
+
+    /* Transitions */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Shadows */
+    --shadow-sm: 0 4px 20px rgba(0, 255, 255, 0.3);
+    --shadow-md: 0 8px 30px rgba(0, 255, 255, 0.5);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 255, 255, 0.1);
+    --shadow-container: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   CSS Reset
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   Smooth Scrolling & Reduced Motion
+   ============================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ============================================
+   Body & Dark Theme with Gradient Background
+   ============================================ */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-mid) 50%, var(--color-bg-darker) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: var(--spacing-md) 0;
+}
+
+/* ============================================
+   Skip to Content Link (Accessibility)
+   ============================================ */
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: var(--color-bg-dark);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 1000;
+    transition: top var(--transition-fast);
+}
+
+.skip-to-content:focus {
+    top: var(--spacing-sm);
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   Glassmorphism Container
+   ============================================ */
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: var(--spacing-xl) auto;
+    padding: 0;
+    background: rgba(26, 31, 58, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-container);
+    overflow: hidden;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(20px)) {
+    .container {
+        background: rgba(26, 31, 58, 0.95);
+    }
+}
+
+/* ============================================
+   Header Styling
+   ============================================ */
+header {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-lg);
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(0, 153, 255, 0.05) 100%);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    position: relative;
+}
+
+header h1 {
+    font-size: var(--font-size-4xl);
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+}
+
+/* Fallback for gradient text */
+@supports not (-webkit-background-clip: text) {
+    header h1 {
+        color: var(--color-primary);
+        -webkit-text-fill-color: inherit;
+    }
+}
+
+header h3 {
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-xl);
+}
+
+header p {
+    color: var(--color-text-muted);
+    margin-bottom: 10px;
+    font-size: var(--font-size-base);
+}
+
+header a {
+    color: var(--color-primary);
+    text-decoration: none;
+    margin: 0 var(--spacing-sm);
+    transition: all var(--transition-base);
+    position: relative;
+    padding: 4px var(--spacing-xs);
+    border-radius: var(--radius-sm);
+}
+
+header a:hover {
+    color: #fff;
+    background: rgba(100, 181, 246, 0.1);
+    text-shadow: 0 0 15px rgba(100, 181, 246, 0.3);
+}
+
+header a:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   Modern Navigation with Pills
+   ============================================ */
+nav {
+    margin-top: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+nav a {
+    display: inline-block;
+    padding: 10px var(--spacing-lg);
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all var(--transition-base);
+    font-size: var(--font-size-sm);
+    letter-spacing: 0.3px;
+}
+
+nav a:hover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.3);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+nav a:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+nav a:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+}
+
+nav a.active {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(0, 153, 255, 0.2) 100%);
+    border-color: rgba(0, 255, 255, 0.5);
+    color: var(--color-primary);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+/* ============================================
+   Content Area
+   ============================================ */
+main {
+    padding: var(--spacing-xl);
+}
+
+/* ============================================
+   Sections with Fade Animation
+   ============================================ */
+section {
+    margin: 0;
+    display: none;
+    animation: fadeIn var(--transition-slow) ease-in-out;
+}
+
+section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   Section Headers with Gradient
+   ============================================ */
+section h2 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border: none;
+    display: block;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+/* Fallback for gradient text */
+@supports not (-webkit-background-clip: text) {
+    section h2 {
+        color: var(--color-primary);
+        -webkit-text-fill-color: inherit;
+    }
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+/* ============================================
+   List Resets
+   ============================================ */
+.skills ul,
+.experience ul,
+.education ul,
+.certifications ul,
+.publications ul {
+    list-style-type: none;
+}
+
+/* ============================================
+   Modern Skill Pills
+   ============================================ */
+.skills ul li,
+.certifications ul li {
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: var(--spacing-xs) 10px var(--spacing-xs) 0;
+    display: inline-block;
+    background: rgba(0, 255, 255, 0.08);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    transition: all var(--transition-base);
+}
+
+.skills ul li:hover,
+.certifications ul li:hover {
+    background: rgba(0, 255, 255, 0.15);
+    border-color: rgba(0, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.2);
+}
+
+/* ============================================
+   Modern Card Design for Items
+   ============================================ */
+.experience-item,
+.education-item,
+.publication-item {
+    margin-bottom: var(--spacing-lg);
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.experience-item:hover,
+.education-item:hover,
+.publication-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(0, 255, 255, 0.3);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.experience-item h3,
+.education-item h3,
+.publication-item h3 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-xs);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.experience-item h4,
+.education-item h4 {
+    font-size: var(--font-size-lg);
+    margin-bottom: 15px;
+    color: var(--color-primary);
+    font-weight: 400;
+}
+
+.experience-item ul,
+.education-item ul {
+    list-style-type: none;
+    margin-left: 0;
+    margin-top: 15px;
+}
+
+.experience-item ul li,
+.education-item ul li {
+    display: flex;
+    align-items: flex-start;
+    padding: var(--spacing-xs) 0;
+    color: var(--color-text-secondary);
+}
+
+.experience-item ul li::before,
+.education-item ul li::before {
+    content: '▹';
+    color: var(--color-primary);
+    font-size: var(--font-size-lg);
+    margin-right: 15px;
+    flex-shrink: 0;
+    line-height: 1.6;
+}
+
+/* ============================================
+   Footer Styling
+   ============================================ */
+footer {
+    text-align: center;
+    padding: var(--spacing-xl);
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+    margin-top: 0;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.03) 0%, rgba(0, 153, 255, 0.03) 100%);
+}
+
+footer hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.3) 50%, transparent 100%);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ============================================
+   Modern Download Buttons
+   ============================================ */
+footer a {
+    display: inline-block;
+    padding: 14px 32px;
+    margin: 10px 15px;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    border: 1px solid;
+    position: relative;
+    overflow: hidden;
+}
+
+footer a:focus {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+footer a:first-of-type {
+    color: #fff;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border-color: rgba(0, 255, 255, 0.5);
+    box-shadow: var(--shadow-sm);
+}
+
+footer a:first-of-type:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+footer a:nth-of-type(2) {
+    color: var(--color-text-primary);
+    background: transparent;
+    border-color: var(--color-text-primary);
+    box-shadow: none;
+}
+
+footer a:nth-of-type(2):hover {
+    transform: translateY(-3px);
+    background: rgba(228, 230, 235, 0.1);
+    color: #fff;
+    box-shadow: 0 8px 30px rgba(228, 230, 235, 0.2);
+}
+
+footer p {
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-md);
+    font-size: var(--font-size-sm);
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+    body {
+        background: white;
+        color: black;
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        background: white;
+        box-shadow: none;
+        border: none;
+    }
+
+    nav,
+    .skip-to-content,
+    footer a {
+        display: none !important;
+    }
+
+    section {
+        display: block !important;
+        page-break-inside: avoid;
+        animation: none;
+    }
+
+    header {
+        background: white;
+        border-bottom: 2px solid #333;
+    }
+
+    header h1 {
+        color: #000;
+        -webkit-text-fill-color: #000;
+        text-shadow: none;
+    }
+
+    section h2 {
+        color: #000;
+        -webkit-text-fill-color: #000;
+        page-break-after: avoid;
+    }
+
+    .experience-item,
+    .education-item,
+    .publication-item {
+        page-break-inside: avoid;
+        border: 1px solid #ddd;
+        background: white;
+        box-shadow: none;
+    }
+
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    footer {
+        border-top: 2px solid #333;
+    }
+}
+
+/* ============================================
+   Responsive Design - Mobile First
+   ============================================ */
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: var(--spacing-md) auto;
+    }
+
+    header {
+        padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+    }
+
+    header h1 {
+        font-size: var(--font-size-3xl);
+    }
+
+    main {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    nav {
+        gap: var(--spacing-xs);
+    }
+
+    nav a {
+        margin: 0;
+        padding: var(--spacing-xs) var(--spacing-base);
+        font-size: var(--font-size-xs);
+    }
+
+    section h2 {
+        font-size: 28px;
+    }
+
+    .experience-item,
+    .education-item,
+    .publication-item {
+        padding: var(--spacing-md);
+    }
+
+    footer a {
+        display: block;
+        margin: 10px auto;
+        max-width: 250px;
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    header h1 {
+        font-size: 32px;
+    }
+
+    main {
+        padding: var(--spacing-md);
+    }
+}
+
+/* Large Tablets and Small Desktops */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+
+    header h1 {
+        font-size: 44px;
+    }
+}
+
+/* Large Desktops */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    header h1 {
+        font-size: 60px;
+    }
+
+    section h2 {
+        font-size: 42px;
+    }
+}
