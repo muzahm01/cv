@@ -195,7 +195,8 @@ header p {
     font-size: var(--font-size-base);
 }
 
-.center a {
+.center a,
+#main-content>p:first-of-type a {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -211,7 +212,8 @@ header p {
     font-weight: 500;
 }
 
-.center a:hover {
+.center a:hover,
+#main-content>p:first-of-type a:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--color-primary);
     color: var(--color-primary);
@@ -219,13 +221,15 @@ header p {
     box-shadow: var(--shadow-sm);
 }
 
-.center a:focus {
+.center a:focus,
+#main-content>p:first-of-type a:focus {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }
 
 /* SVG icons for contact links */
-.center a[href^="mailto:"]::before {
+.center a[href^="mailto:"]::before,
+#main-content>p:first-of-type a[href^="mailto:"]::before {
     content: "";
     display: inline-block;
     width: 16px;
@@ -235,7 +239,8 @@ header p {
     background-repeat: no-repeat;
 }
 
-.center a[href*="linkedin.com"]::before {
+.center a[href*="linkedin.com"]::before,
+#main-content>p:first-of-type a[href*="linkedin.com"]::before {
     content: "";
     display: inline-block;
     width: 16px;
@@ -245,7 +250,8 @@ header p {
     background-repeat: no-repeat;
 }
 
-.center a[href*="github.com"]::before {
+.center a[href*="github.com"]::before,
+#main-content>p:first-of-type a[href*="github.com"]::before {
     content: "";
     display: inline-block;
     width: 16px;
