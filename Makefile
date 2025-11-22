@@ -8,7 +8,7 @@ all: html pdf docx
 	@echo "✓ All formats built successfully!"
 
 # Variables
-PANDOC := pandoc
+PANDOC := /opt/homebrew/bin/pandoc
 LATEX_SOURCE := cv.tex
 HTML_OUTPUT := index.html
 PDF_OUTPUT := cv.pdf
@@ -28,11 +28,13 @@ $(HTML_OUTPUT): $(LATEX_SOURCE) $(TEMPLATE) $(CSS_FILE) $(JS_FILE)
 	$(PANDOC) $(LATEX_SOURCE) \
 		-o $(HTML_OUTPUT) \
 		$(PANDOC_FLAGS) \
-		--self-contained \
+		--embed-resources \
 		--template=$(TEMPLATE) \
 		--metadata title="Muzamil Ahmed - CV" \
 		--metadata pagetitle="Muzamil Ahmed - Software Engineer & DevOps Specialist"
 	@echo "✓ HTML built: $(HTML_OUTPUT)"
+	@echo "📄 File location: $$(pwd)/$(HTML_OUTPUT)"
+	@echo "🌐 Open in browser: file://$$(pwd)/$(HTML_OUTPUT)"
 
 # PDF generation
 pdf: $(PDF_OUTPUT)
