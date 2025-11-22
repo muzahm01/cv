@@ -489,16 +489,17 @@ footer a:first-of-type:hover {
 
 footer a:nth-of-type(2) {
     color: var(--color-text-primary);
-    background: transparent;
-    border-color: var(--color-text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
     box-shadow: none;
 }
 
 footer a:nth-of-type(2):hover {
     transform: translateY(-3px);
-    background: rgba(228, 230, 235, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
     color: #fff;
-    box-shadow: 0 8px 30px rgba(228, 230, 235, 0.2);
+    box-shadow: var(--shadow-sm);
 }
 
 footer p {
