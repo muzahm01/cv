@@ -195,7 +195,7 @@ header p {
     font-size: var(--font-size-base);
 }
 
-header a {
+.center a {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -211,7 +211,7 @@ header a {
     font-weight: 500;
 }
 
-header a:hover {
+.center a:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--color-primary);
     color: var(--color-primary);
@@ -219,13 +219,13 @@ header a:hover {
     box-shadow: var(--shadow-sm);
 }
 
-header a:focus {
+.center a:focus {
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
 }
 
 /* SVG icons for contact links */
-header a[href^="mailto:"]::before {
+.center a[href^="mailto:"]::before {
     content: "";
     display: inline-block;
     width: 16px;
@@ -235,7 +235,7 @@ header a[href^="mailto:"]::before {
     background-repeat: no-repeat;
 }
 
-header a[href*="linkedin.com"]::before {
+.center a[href*="linkedin.com"]::before {
     content: "";
     display: inline-block;
     width: 16px;
@@ -245,7 +245,7 @@ header a[href*="linkedin.com"]::before {
     background-repeat: no-repeat;
 }
 
-header a[href*="github.com"]::before {
+.center a[href*="github.com"]::before {
     content: "";
     display: inline-block;
     width: 16px;
