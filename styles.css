@@ -481,6 +481,128 @@ section h2::after {
 }
 
 /* ============================================
+   Enhanced Experience Section Styling
+   ============================================ */
+
+/* Add a wrapper-like visual effect for each experience entry */
+#experience p {
+    padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-sm);
+    margin-bottom: 0;
+    margin-top: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+/* Style company names (bold text in experience section) */
+#experience p strong:first-of-type {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-primary);
+    display: inline-block;
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: -0.01em;
+}
+
+/* Style dates (second bold text) */
+#experience p strong:last-of-type {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    float: right;
+}
+
+/* Style position titles (italicized text) */
+#experience p em {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-lg);
+    color: var(--color-primary);
+    font-weight: 500;
+    font-style: normal;
+    display: block;
+    margin-top: var(--spacing-xs);
+}
+
+/* Style the lists within experience entries - make them part of the card */
+#experience ul {
+    list-style-type: none;
+    margin: 0;
+    padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+/* Hover effect for the entire experience card */
+#experience p:hover,
+#experience p:hover + ul {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+#experience p:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#experience p:hover + ul {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#experience ul:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#experience ul li {
+    display: flex;
+    align-items: flex-start;
+    padding: var(--spacing-xs) 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+}
+
+#experience ul li::before {
+    content: '▸';
+    color: var(--color-primary);
+    font-size: var(--font-size-base);
+    margin-right: var(--spacing-sm);
+    flex-shrink: 0;
+    font-weight: 600;
+}
+
+/* Style horizontal rules between experience entries */
+#experience hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(56, 189, 248, 0.4) 50%,
+        transparent 100%);
+    margin: var(--spacing-xl) 0;
+    position: relative;
+}
+
+#experience hr::after {
+    content: '◆';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-bg-mid);
+    padding: 0 var(--spacing-sm);
+    color: var(--color-primary);
+    font-size: var(--font-size-base);
+}
+
+/* ============================================
    Footer Styling
    ============================================ */
 footer {
