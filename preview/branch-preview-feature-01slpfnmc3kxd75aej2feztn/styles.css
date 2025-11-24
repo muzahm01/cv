@@ -1,0 +1,831 @@
+/* ============================================
+   CSS Variables for Easy Theming
+   ============================================ */
+:root {
+
+    /* Colors - Deep Slate Theme */
+    --color-primary: #38bdf8;
+    /* Sky Blue 400 */
+    --color-primary-dark: #0284c7;
+    /* Sky Blue 600 */
+    --color-text-primary: #f1f5f9;
+    /* Slate 100 */
+    --color-text-secondary: #cbd5e1;
+    /* Slate 300 */
+    --color-text-muted: #94a3b8;
+    /* Slate 400 */
+    --color-bg-dark: #0f172a;
+    /* Slate 900 */
+    --color-bg-mid: #1e293b;
+    /* Slate 800 */
+    --color-bg-darker: #020617;
+    /* Slate 950 */
+
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+
+    /* Typography */
+    --font-family-heading: 'Outfit', sans-serif;
+    --font-family-body: 'Inter', sans-serif;
+
+    --font-size-xs: 13px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 32px;
+    --font-size-4xl: 48px;
+
+    /* Border radius */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+
+    /* Transitions */
+    --transition-fast: 0.15s ease-out;
+    --transition-base: 0.2s ease-out;
+    --transition-slow: 0.3s ease-out;
+
+    /* Shadows - Clean & Modern */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-container: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* ============================================
+   CSS Reset
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   Smooth Scrolling & Reduced Motion
+   ============================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ============================================
+   Body & Dark Theme with Gradient Background
+   ============================================ */
+body {
+    font-family: var(--font-family-body);
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    background: var(--color-bg-dark);
+    background-image: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(2, 132, 199, 0.1) 0px, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: var(--spacing-md) 0;
+}
+
+/* ============================================
+   Skip to Content Link (Accessibility)
+   ============================================ */
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-primary);
+    color: var(--color-bg-dark);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 1000;
+    transition: top var(--transition-fast);
+}
+
+.skip-to-content:focus {
+    top: var(--spacing-sm);
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   Glassmorphism Container
+   ============================================ */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: var(--spacing-xl) auto;
+    padding: 0;
+    background: rgba(30, 41, 59, 0.7);
+    /* Slate 800 with opacity */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: var(--shadow-container);
+    overflow: hidden;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(16px)) {
+    .container {
+        background: var(--color-bg-mid);
+    }
+}
+
+/* ============================================
+   Header Styling
+   ============================================ */
+header {
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-lg);
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), transparent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+header h1 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-4xl);
+    margin-bottom: 15px;
+    color: var(--color-text-primary);
+    background: none;
+    -webkit-text-fill-color: initial;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-shadow: none;
+}
+
+/* Fallback for gradient text */
+@supports not (-webkit-background-clip: text) {
+    header h1 {
+        color: var(--color-primary);
+        -webkit-text-fill-color: inherit;
+    }
+}
+
+header h3 {
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-xl);
+}
+
+header p {
+    color: var(--color-text-muted);
+    margin-bottom: 10px;
+    font-size: var(--font-size-base);
+}
+
+.center a,
+#main-content>p:first-of-type a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+    margin: 6px 8px;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-base);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.center a:hover,
+#main-content>p:first-of-type a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.center a:focus,
+#main-content>p:first-of-type a:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* SVG icons for contact links */
+.center a[href^="mailto:"]::before,
+#main-content>p:first-of-type a[href^="mailto:"]::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"%3E%3Crect x="2" y="4" width="20" height="16" rx="2"/%3E%3Cpath d="m2 7 10 7 10-7"/%3E%3C/svg%3E');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.center a[href*="linkedin.com"]::before,
+#main-content>p:first-of-type a[href*="linkedin.com"]::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"%3E%3Cpath d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/%3E%3C/svg%3E');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.center a[href*="github.com"]::before,
+#main-content>p:first-of-type a[href*="github.com"]::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"%3E%3Cpath d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z"/%3E%3C/svg%3E');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* ============================================
+   Modern Navigation with Pills
+   ============================================ */
+nav {
+    margin-top: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+nav a {
+    display: inline-block;
+    padding: 8px 20px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--radius-full);
+    background: transparent;
+    border: 1px solid transparent;
+    transition: all var(--transition-base);
+    font-size: var(--font-size-sm);
+    font-family: var(--font-family-body);
+}
+
+nav a:hover {
+    color: var(--color-text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+}
+
+nav a:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+nav a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+nav a.active {
+    background: rgba(56, 189, 248, 0.1);
+    /* Sky blue tint */
+    color: var(--color-primary);
+    font-weight: 600;
+    box-shadow: none;
+}
+
+/* ============================================
+   Content Area
+   ============================================ */
+main {
+    padding: var(--spacing-xl);
+}
+
+/* ============================================
+   Sections with Fade Animation
+   ============================================ */
+section {
+    margin: 0;
+    display: none;
+    animation: fadeIn var(--transition-slow) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   Section Headers with Gradient
+   ============================================ */
+section h2 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-text-primary);
+    background: none;
+    -webkit-text-fill-color: initial;
+    border: none;
+    display: block;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 0;
+    letter-spacing: -0.02em;
+}
+
+/* Fallback for gradient text */
+@supports not (-webkit-background-clip: text) {
+    section h2 {
+        color: var(--color-text-primary);
+        -webkit-text-fill-color: inherit;
+    }
+}
+
+section h2::after {
+    display: none;
+}
+
+/* ============================================
+   List Resets
+   ============================================ */
+.skills ul,
+.experience ul,
+.education ul,
+.certifications ul,
+.publications ul {
+    list-style-type: none;
+}
+
+/* ============================================
+   Modern Skill Pills
+   ============================================ */
+/* ============================================
+   Modern Skill Pills
+   ============================================ */
+.skills ul li,
+.certifications ul li {
+    padding: 6px 14px;
+    margin: var(--spacing-xs) 8px var(--spacing-xs) 0;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    transition: all var(--transition-base);
+    font-family: var(--font-family-body);
+}
+
+.skills ul li:hover,
+.certifications ul li:hover {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--color-primary);
+    transform: translateY(-1px);
+}
+
+/* ============================================
+   Modern Card Design for Items
+   ============================================ */
+.experience-item,
+.education-item,
+.publication-item {
+    margin-bottom: var(--spacing-lg);
+    padding: 0;
+    background: transparent;
+    border: none;
+    transition: all var(--transition-base);
+}
+
+.experience-item:hover,
+.education-item:hover,
+.publication-item:hover {
+    background: transparent;
+    border-color: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+.experience-item h3,
+.education-item h3,
+.publication-item h3 {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xl);
+    margin-bottom: 4px;
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+.experience-item h4,
+.education-item h4 {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-base);
+    margin-bottom: 12px;
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+.experience-item ul,
+.education-item ul {
+    list-style-type: none;
+    margin-left: 0;
+    margin-top: 12px;
+}
+
+.experience-item ul li,
+.education-item ul li {
+    display: flex;
+    align-items: flex-start;
+    padding: 4px 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+}
+
+.experience-item ul li::before,
+.education-item ul li::before {
+    content: '•';
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+    margin-right: 12px;
+    flex-shrink: 0;
+    line-height: 1.5;
+}
+
+/* ============================================
+   Enhanced Experience Section Styling
+   ============================================ */
+
+/* Add a wrapper-like visual effect for each experience entry */
+#experience p {
+    padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-sm);
+    margin-bottom: 0;
+    margin-top: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+/* Style company names (bold text in experience section) */
+#experience p strong:first-of-type {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-primary);
+    display: inline-block;
+    margin-bottom: var(--spacing-xs);
+    letter-spacing: -0.01em;
+}
+
+/* Style dates (second bold text) */
+#experience p strong:last-of-type {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    font-weight: 500;
+    float: right;
+}
+
+/* Style position titles (italicized text) */
+#experience p em {
+    font-family: var(--font-family-body);
+    font-size: var(--font-size-lg);
+    color: var(--color-primary);
+    font-weight: 500;
+    font-style: normal;
+    display: block;
+    margin-top: var(--spacing-xs);
+}
+
+/* Style the lists within experience entries - make them part of the card */
+#experience ul {
+    list-style-type: none;
+    margin: 0;
+    padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+/* Hover effect for the entire experience card */
+#experience p:hover,
+#experience p:hover + ul {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+#experience p:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#experience p:hover + ul {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#experience ul:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#experience ul li {
+    display: flex;
+    align-items: flex-start;
+    padding: var(--spacing-xs) 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+}
+
+#experience ul li::before {
+    content: '▸';
+    color: var(--color-primary);
+    font-size: var(--font-size-base);
+    margin-right: var(--spacing-sm);
+    flex-shrink: 0;
+    font-weight: 600;
+}
+
+/* Style horizontal rules between experience entries */
+#experience hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(56, 189, 248, 0.4) 50%,
+        transparent 100%);
+    margin: var(--spacing-xl) 0;
+    position: relative;
+}
+
+#experience hr::after {
+    content: '◆';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-bg-mid);
+    padding: 0 var(--spacing-sm);
+    color: var(--color-primary);
+    font-size: var(--font-size-base);
+}
+
+/* ============================================
+   Footer Styling
+   ============================================ */
+footer {
+    text-align: center;
+    padding: var(--spacing-xl);
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+    margin-top: 0;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.03) 0%, rgba(0, 153, 255, 0.03) 100%);
+}
+
+footer hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.3) 50%, transparent 100%);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ============================================
+   Modern Download Buttons
+   ============================================ */
+footer a {
+    display: inline-block;
+    padding: 14px 32px;
+    margin: 10px 15px;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    border: 1px solid;
+    position: relative;
+    overflow: hidden;
+}
+
+footer a:focus {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+footer a:first-of-type {
+    color: #fff;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border-color: rgba(0, 255, 255, 0.5);
+    box-shadow: var(--shadow-sm);
+}
+
+footer a:first-of-type:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+footer a:nth-of-type(2) {
+    color: var(--color-text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: none;
+}
+
+footer a:nth-of-type(2):hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+footer p {
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-md);
+    font-size: var(--font-size-sm);
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+    body {
+        background: white;
+        color: black;
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        background: white;
+        box-shadow: none;
+        border: none;
+    }
+
+    nav,
+    .skip-to-content,
+    footer a {
+        display: none !important;
+    }
+
+    section {
+        display: block !important;
+        page-break-inside: avoid;
+        animation: none;
+    }
+
+    header {
+        background: white;
+        border-bottom: 2px solid #333;
+    }
+
+    header h1 {
+        color: #000;
+        -webkit-text-fill-color: #000;
+        text-shadow: none;
+    }
+
+    section h2 {
+        color: #000;
+        -webkit-text-fill-color: #000;
+        page-break-after: avoid;
+    }
+
+    .experience-item,
+    .education-item,
+    .publication-item {
+        page-break-inside: avoid;
+        border: 1px solid #ddd;
+        background: white;
+        box-shadow: none;
+    }
+
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    footer {
+        border-top: 2px solid #333;
+    }
+}
+
+/* ============================================
+   Responsive Design - Mobile First
+   ============================================ */
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: var(--spacing-md) auto;
+    }
+
+    header {
+        padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+    }
+
+    header h1 {
+        font-size: var(--font-size-3xl);
+    }
+
+    main {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    nav {
+        gap: var(--spacing-xs);
+    }
+
+    nav a {
+        margin: 0;
+        padding: var(--spacing-xs) var(--spacing-base);
+        font-size: var(--font-size-xs);
+    }
+
+    section h2 {
+        font-size: 28px;
+    }
+
+    .experience-item,
+    .education-item,
+    .publication-item {
+        padding: var(--spacing-md);
+    }
+
+    footer a {
+        display: block;
+        margin: 10px auto;
+        max-width: 250px;
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    header h1 {
+        font-size: 32px;
+    }
+
+    main {
+        padding: var(--spacing-md);
+    }
+}
+
+/* Large Tablets and Small Desktops */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+
+    header h1 {
+        font-size: 44px;
+    }
+}
+
+/* Large Desktops */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    header h1 {
+        font-size: 60px;
+    }
+
+    section h2 {
+        font-size: 42px;
+    }
+}
