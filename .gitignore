@@ -36,10 +36,18 @@
 *.temp
 .cache/
 
-# Node modules (if adding build tools later)
+# Node modules and Next.js
 node_modules/
 npm-debug.log
 yarn-error.log
+/.next/
+/out/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+next-env.d.ts
+*.tsbuildinfo
+.vercel
 
 # Python (if adding scripts)
 __pycache__/
