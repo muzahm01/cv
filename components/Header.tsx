@@ -1,3 +1,5 @@
+'use client'
+
 import { FaEnvelope, FaLinkedin, FaGithub, FaDownload } from 'react-icons/fa'
 
 export default function Header() {
