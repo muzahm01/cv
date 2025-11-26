@@ -19,7 +19,7 @@ A modern, accessible CV/resume website with automated multi-format generation (H
 
 Visit the live site: [https://muzahm01.github.io/cv/](https://muzahm01.github.io/cv/)
 OR 
-muzamil.fi
+www.muzamil.fi
 
 ## 📋 Table of Contents
 
