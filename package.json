@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "parse": "node parse-cv.js",
+    "dev": "npm run parse && next dev",
+    "build": "npm run parse && next build",
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export"

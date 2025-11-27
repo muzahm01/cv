@@ -1,26 +1,7 @@
+import cvData from '@/cv-data.json'
+
 export default function Skills() {
-  const skills = [
-    { category: 'Programming', items: ['Python'] },
-    { category: 'Test Automation', items: ['Pytest', 'Appium'] },
-    { category: 'Mobile Testing', items: ['Android', 'iOS'] },
-    { category: 'CI/CD', items: ['GitHub Actions', 'CI infrastructure'] },
-    {
-      category: 'Testing Types',
-      items: ['Integration', 'Smoke', 'Acceptance', 'E2E', 'Regression', 'Exploratory']
-    },
-    {
-      category: 'Test Planning',
-      items: ['Test plans', 'Test cases', 'Test scripts', 'Frameworks']
-    },
-    {
-      category: 'Collaboration',
-      items: ['Cross-functional teams', 'Design discussions', 'Pair programming']
-    },
-    {
-      category: 'Issue Tracking',
-      items: ['Defect reporting', 'Tracking', 'Regression automation']
-    },
-  ]
+  const skills = cvData.skills
 
   return (
     <section className="section-card">

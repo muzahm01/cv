@@ -1,25 +1,8 @@
-const certifications = [
-  {
-    name: 'AI For Everyone',
-    issuer: 'Coursera',
-    date: 'August 2022',
-    credentialId: '5JW7QZLUCSPM',
-  },
-  {
-    name: 'Build Local Development Environments Using Docker Containers',
-    issuer: 'Coursera',
-    date: 'January 2022',
-    credentialId: 'WNRNTBLZWXEF',
-  },
-  {
-    name: 'Docker for Absolute Beginners',
-    issuer: 'Coursera',
-    date: 'December 2021',
-    credentialId: 'JX5M2CR8BTRV',
-  },
-]
+import cvData from '@/cv-data.json'
 
 export default function Certifications() {
+  const certifications = cvData.certifications
+
   return (
     <section className="section-card">
       <h2 className="text-3xl font-bold mb-6 gradient-text">Certifications</h2>
