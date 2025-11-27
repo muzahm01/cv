@@ -66,14 +66,11 @@ jobs:
           ls -lh out/cv.pdf
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: cv
-          directory: out
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.head_ref || github.ref_name }}
+          command: pages deploy out --project-name=cv --branch=${{ github.head_ref || github.ref_name }}
 
       - name: Create deployment summary
         run: |
