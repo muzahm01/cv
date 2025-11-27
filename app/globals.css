@@ -23,19 +23,188 @@
 }
 
 @media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 1.5cm 2cm;
+  }
+
   body {
-    @apply bg-white text-black;
+    background: white !important;
+    color: black !important;
+    font-size: 11pt !important;
+    line-height: 1.3 !important;
   }
 
-  .section-card {
-    @apply bg-white border-gray-300 shadow-none;
-  }
-
-  .gradient-text {
-    @apply text-black bg-none;
-  }
-
+  /* Hide download button and other UI elements */
   .no-print {
     display: none !important;
   }
+
+  /* Remove all cards styling and backgrounds */
+  .section-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0.3rem 0 !important;
+    margin: 0.5rem 0 !important;
+    page-break-inside: avoid;
+  }
+
+  /* Simple black text */
+  .gradient-text,
+  .text-primary,
+  .text-text-primary,
+  .text-text-secondary,
+  h1, h2, h3, h4, h5, h6,
+  a {
+    background: none !important;
+    color: black !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+    text-fill-color: black !important;
+    -webkit-text-fill-color: black !important;
+  }
+
+  /* Remove skill badges styling */
+  .skill-badge {
+    background: transparent !important;
+    border: 1px solid #666 !important;
+    color: black !important;
+    padding: 0.1rem 0.4rem !important;
+    margin: 0.1rem !important;
+    font-size: 9pt !important;
+  }
+
+  /* Compact header */
+  header {
+    margin-bottom: 0.5rem !important;
+    padding: 0 !important;
+  }
+
+  header h1 {
+    font-size: 20pt !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  header p {
+    font-size: 10pt !important;
+    margin: 0.1rem 0 !important;
+  }
+
+  header .flex {
+    gap: 0.5rem !important;
+    margin: 0.3rem 0 !important;
+    font-size: 9pt !important;
+  }
+
+  /* Section headings */
+  section h2 {
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    margin: 0.4rem 0 0.3rem 0 !important;
+    padding-bottom: 0.1rem !important;
+    border-bottom: 1px solid black !important;
+  }
+
+  /* Section paragraphs and text */
+  section p {
+    font-size: 10pt !important;
+    margin: 0.2rem 0 !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Skills section - more compact */
+  section div[class*="space-y"] {
+    margin: 0.2rem 0 !important;
+  }
+
+  section h3 {
+    font-size: 10pt !important;
+    font-weight: 600 !important;
+    margin: 0.3rem 0 0.1rem 0 !important;
+  }
+
+  /* Experience timeline - remove decorations */
+  section div[class*="border-l"] {
+    border-left: 2px solid black !important;
+    padding-left: 0.5rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  section div[class*="absolute"] {
+    display: none !important; /* Hide timeline dots */
+  }
+
+  /* Experience items */
+  section ul {
+    margin: 0.2rem 0 0.2rem 0.8rem !important;
+    padding: 0 !important;
+  }
+
+  section li {
+    font-size: 9.5pt !important;
+    margin: 0.1rem 0 !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Education and certifications - compact */
+  section div[class*="grid"] {
+    display: block !important;
+  }
+
+  section div[class*="grid"] > div {
+    margin: 0.3rem 0 !important;
+    padding: 0.3rem !important;
+    border: 1px solid #ccc !important;
+    background: transparent !important;
+  }
+
+  /* Publications - smaller text */
+  section div[class*="border-l-2"] {
+    border-left: 2px solid #999 !important;
+    padding-left: 0.4rem !important;
+    margin: 0.2rem 0 !important;
+  }
+
+  /* Footer - minimal */
+  footer {
+    margin-top: 0.5rem !important;
+    padding: 0.3rem 0 !important;
+    border-top: 1px solid #ccc !important;
+  }
+
+  footer h2 {
+    font-size: 11pt !important;
+  }
+
+  footer p {
+    font-size: 9pt !important;
+  }
+
+  /* Page breaks */
+  section:nth-of-type(4) {
+    page-break-before: always;
+  }
+
+  /* Ensure no widows/orphans */
+  p, li, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Remove extra spacing */
+  .max-w-5xl {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  div[class*="space-y"] {
+    margin: 0.3rem 0 !important;
+  }
 }
+
