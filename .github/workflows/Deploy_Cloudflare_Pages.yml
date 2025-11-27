@@ -92,5 +92,10 @@ jobs:
             echo "### 🔗 Deployment Alias" >> $GITHUB_STEP_SUMMARY
             echo "${{ steps.deploy.outputs.deployment-alias }}" >> $GITHUB_STEP_SUMMARY
           fi
+          if [ -n "${{ steps.deploy.outputs.deployment-alias-url }}" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🔗 Deployment Alias URL" >> $GITHUB_STEP_SUMMARY
+            echo "**${{ steps.deploy.outputs.deployment-alias-url }}**" >> $GITHUB_STEP_SUMMARY
+          fi
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "✨ Your deployment is now live!" >> $GITHUB_STEP_SUMMARY
