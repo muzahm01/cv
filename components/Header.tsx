@@ -43,13 +43,14 @@ export default function Header() {
         </a>
       </div>
 
-      <button
-        onClick={() => window.print()}
+      <a
+        href="/cv.pdf"
+        download="Muzamil_Ahmed_CV.pdf"
         className="no-print inline-flex items-center gap-2 px-6 py-3 bg-primary text-bg-dark font-semibold rounded-lg hover:bg-primary-dark transition-all hover:shadow-lg hover:shadow-primary/30"
       >
         <FaDownload />
-        Download as PDF
-      </button>
+        Download PDF
+      </a>
     </header>
   )
 }

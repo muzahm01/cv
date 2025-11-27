@@ -18,6 +18,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Install LaTeX and Pandoc for PDF generation
+      - name: Cache LaTeX packages
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetex pandoc
+          version: 1.0
+
+      - name: Install LaTeX and Pandoc
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-xetex \
+            pandoc
+
+      # Generate PDF from LaTeX
+      - name: Generate PDF from LaTeX
+        run: |
+          echo "Building PDF from cv.tex..."
+          pandoc cv.tex -s -o cv.pdf --pdf-engine=xelatex --variable geometry:margin=1in
+          if [ ! -f cv.pdf ]; then
+            echo "Error: cv.pdf was not created"
+            exit 1
+          fi
+          echo "✓ PDF created successfully"
+          ls -lh cv.pdf
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -31,6 +60,13 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+
+      # Copy PDF to output directory
+      - name: Copy PDF to output
+        run: |
+          cp cv.pdf out/cv.pdf
+          echo "✓ PDF copied to output directory"
+          ls -lh out/cv.pdf
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
