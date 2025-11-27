@@ -18,7 +18,7 @@
   }
 
   .skill-badge {
-    @apply inline-block px-3 py-1 bg-primary/10 border border-primary/30 rounded-full text-sm text-primary hover:bg-primary/20 transition-colors;
+    @apply inline-block px-2 py-0.5 bg-primary/10 border border-primary/30 rounded-full text-xs text-primary hover:bg-primary/20 transition-colors;
   }
 }
 
