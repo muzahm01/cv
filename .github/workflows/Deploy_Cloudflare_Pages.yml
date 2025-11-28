@@ -66,25 +66,36 @@ jobs:
           ls -lh out/cv.pdf
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: cv
-          directory: out
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.head_ref || github.ref_name }}
+          command: pages deploy out --project-name=cv --branch=${{ github.head_ref || github.ref_name }}
 
       - name: Create deployment summary
         run: |
           echo "## 🚀 Deployment Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            echo "**Production URL:** https://cv.pages.dev" >> $GITHUB_STEP_SUMMARY
-          else
-            BRANCH_NAME="${{ github.head_ref || github.ref_name }}"
-            SANITIZED_BRANCH=$(echo "${BRANCH_NAME}" | sed 's/[^a-zA-Z0-9-]/-/g' | tr '[:upper:]' '[:lower:]')
-            echo "**Preview URL:** https://${SANITIZED_BRANCH}.cv.pages.dev" >> $GITHUB_STEP_SUMMARY
+          echo "### Deployment Details" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch:** \`${{ github.head_ref || github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Deployment ID:** \`${{ steps.deploy.outputs.deployment-id }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment:** \`${{ steps.deploy.outputs.environment }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ steps.deploy.outputs.deployment-url }}" ]; then
+            echo "### 🌐 Deployment URL" >> $GITHUB_STEP_SUMMARY
+            echo "**${{ steps.deploy.outputs.deployment-url }}**" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -n "${{ steps.deploy.outputs.deployment-alias }}" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🔗 Deployment Alias" >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.deploy.outputs.deployment-alias }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -n "${{ steps.deploy.outputs.deployment-alias-url }}" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### 🔗 Deployment Alias URL" >> $GITHUB_STEP_SUMMARY
+            echo "**${{ steps.deploy.outputs.deployment-alias-url }}**" >> $GITHUB_STEP_SUMMARY
           fi
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "✨ Changes will be visible within 1-2 minutes." >> $GITHUB_STEP_SUMMARY
+          echo "✨ Your deployment is now live!" >> $GITHUB_STEP_SUMMARY
