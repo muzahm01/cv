@@ -18,7 +18,7 @@ CSS_FILE := styles.css
 JS_FILE := script.js
 
 # Pandoc common flags
-PANDOC_FLAGS := --standalone
+PANDOC_FLAGS := --standalone --section-divs
 
 # HTML generation with custom template
 html: $(HTML_OUTPUT)

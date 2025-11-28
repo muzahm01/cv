@@ -53,6 +53,9 @@
             setupKeyboardNavigation();
             setupHashNavigation();
 
+            // Enhance DOM structure for modern styling
+            enhanceDOM();
+
             // Handle initial section from URL hash or show default
             const initialSection = getHashSection() || DEFAULT_SECTION;
             showSection(initialSection);
@@ -60,6 +63,94 @@
         } catch (error) {
             console.error('Error initializing CV navigation:', error);
         }
+    }
+
+    /**
+     * Enhance DOM structure for modern styling (Cards, Pills, etc.)
+     */
+    function enhanceDOM() {
+        // 1. Experience Section: Wrap items in cards
+        const experienceSection = document.getElementById('experience');
+        if (experienceSection) {
+            // Find all P tags (Company/Date) and UL tags (Details)
+            const companies = Array.from(experienceSection.querySelectorAll('p'));
+            
+            companies.forEach(company => {
+                const details = company.nextElementSibling;
+                if (details && details.tagName === 'UL') {
+                    // Create wrapper
+                    const card = document.createElement('div');
+                    card.className = 'experience-card';
+                    
+                    // Insert wrapper before company
+                    company.parentNode.insertBefore(card, company);
+                    
+                    // Move elements into wrapper
+                    card.appendChild(company);
+                    card.appendChild(details);
+                }
+            });
+
+            // Remove HRs in experience section as cards provide separation
+            const hrs = experienceSection.querySelectorAll('hr');
+            hrs.forEach(hr => hr.remove());
+        }
+
+        // 2. Skills Section: Convert DL/DT/DD to pills
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            const dl = skillsSection.querySelector('dl');
+            if (dl) {
+                dl.classList.add('skills-grid');
+                const dds = dl.querySelectorAll('dd');
+                
+                dds.forEach(dd => {
+                    const text = dd.textContent;
+                    // Split by comma, but handle potential lack of commas
+                    const items = text.split(',').map(item => item.trim()).filter(item => item);
+                    
+                    // Clear current content
+                    dd.innerHTML = '';
+                    
+                    // Create pills
+                    const pillContainer = document.createElement('div');
+                    pillContainer.className = 'pill-container';
+                    
+                    items.forEach(item => {
+                        const pill = document.createElement('span');
+                        pill.className = 'skill-pill';
+                        pill.textContent = item;
+                        pillContainer.appendChild(pill);
+                    });
+                    
+                    dd.appendChild(pillContainer);
+                });
+            }
+        }
+
+        // 3. Education & Certifications: Grid Layout
+        ['education', 'certifications', 'publications'].forEach(id => {
+            const section = document.getElementById(id);
+            if (section) {
+                const ul = section.querySelector('ul');
+                if (ul) {
+                    ul.classList.add('card-grid');
+                    
+                    // For certifications, try to add icons based on content
+                    if (id === 'certifications') {
+                        const lis = ul.querySelectorAll('li');
+                        lis.forEach(li => {
+                            // Check for known keywords to add icons (optional enhancement)
+                            if (li.textContent.includes('Docker')) {
+                                li.classList.add('icon-docker');
+                            } else if (li.textContent.includes('AI')) {
+                                li.classList.add('icon-ai');
+                            }
+                        });
+                    }
+                }
+            }
+        });
     }
 
     /**
