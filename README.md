@@ -1,44 +1,89 @@
-# Professional CV/Resume Generator
+# Professional CV/Resume
 
-A modern, accessible CV/resume website with automated multi-format generation (HTML, PDF, DOCX) using LaTeX, Pandoc, and GitHub Actions.
+A modern, responsive CV/resume website built with Next.js, React, TypeScript, and Tailwind CSS. Features automated PDF generation from LaTeX source and deployment to Cloudflare Pages.
 
 ## Features
 
-- ✨ **Modern Design**: Glassmorphism aesthetic with gradient effects
+- ⚡ **Next.js 14**: Modern React framework with static site generation
+- 🎨 **Tailwind CSS**: Utility-first CSS with custom design system
+- 📘 **TypeScript**: Type-safe component development
 - 📱 **Fully Responsive**: Optimized for mobile, tablet, and desktop
-- ♿ **Accessible**: WCAG compliant with ARIA labels, keyboard navigation, and screen reader support
-- 🎨 **Themeable**: CSS variables for easy customization
-- 📄 **Multi-format**: Generates HTML, PDF, and DOCX versions
-- 🔍 **SEO Optimized**: Comprehensive meta tags, Open Graph, and JSON-LD structured data
-- ⚡ **Performance**: Optimized JavaScript with efficient DOM manipulation
-- 🔐 **Secure**: External link protection and modern security practices
-- 🖨️ **Print-friendly**: Dedicated print styles for clean hard copies
-- 🚀 **Automated Deployment**: GitHub Actions CI/CD pipeline
+- 🔄 **Dual-Source Architecture**: Single LaTeX source generates both PDF and web content
+- 📄 **PDF Generation**: Automated PDF creation from cv.tex using Pandoc
+- 🎯 **Component-Based**: Modular React components for easy maintenance
+- 🚀 **Cloudflare Pages**: Fast global CDN deployment with branch previews
+- ♿ **Accessible**: Semantic HTML with ARIA support
+- 🎨 **Custom Theme**: Glassmorphism design with cyan/blue gradient accents
+- 🔍 **SEO Optimized**: Meta tags and Open Graph support
 
 ## 🎯 Live Demo
 
-Visit the live site: [https://muzahm01.github.io/cv/](https://muzahm01.github.io/cv/)
-OR 
-www.muzamil.fi
+Visit the live site: [www.muzamil.fi](https://www.muzamil.fi)
 
 ## 📋 Table of Contents
 
+- [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
 - [Local Development](#local-development)
-- [Build Process](#build-process)
 - [Project Structure](#project-structure)
 - [Customization](#customization)
 - [Deployment](#deployment)
-- [Accessibility](#accessibility)
+- [Build Process](#build-process)
 - [Browser Support](#browser-support)
 - [Contributing](#contributing)
 - [License](#license)
 
+## 🏗️ Architecture
+
+### Dual-Source System
+
+This project uses a unique dual-source architecture:
+
+1. **Source of Truth**: `cv.tex` (LaTeX file)
+   - Single source for all CV content
+   - Professional LaTeX formatting
+   - Used for PDF generation
+
+2. **Web Parser**: `parse-cv.js`
+   - Parses `cv.tex` and extracts structured data
+   - Generates `cv-data.json` for React components
+   - Runs automatically before build
+
+3. **Web Application**: Next.js/React/TypeScript
+   - Reads `cv-data.json`
+   - Renders modern, responsive UI
+   - Static export for optimal performance
+
+### Technology Stack
+
+- **Framework**: Next.js 14 (static export mode)
+- **UI Library**: React 18
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 3
+- **Icons**: react-icons
+- **Font**: Inter (Google Fonts)
+- **PDF Generation**: Pandoc + XeLaTeX
+- **Deployment**: Cloudflare Pages
+- **CI/CD**: GitHub Actions
+
 ## Prerequisites
 
-To build this project locally, you need:
-
 ### Required
+
+- **Node.js** (version 20 or later)
+  ```bash
+  # macOS
+  brew install node
+
+  # Ubuntu/Debian
+  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+
+  # Windows
+  # Download from https://nodejs.org/
+  ```
+
+### Optional (for PDF generation)
 
 - **LaTeX Distribution** (TeX Live recommended)
   ```bash
@@ -46,7 +91,7 @@ To build this project locally, you need:
   brew install --cask mactex
 
   # Ubuntu/Debian
-  sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-xetex
+  sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-xetex
 
   # Windows
   # Download and install MiKTeX from https://miktex.org/
@@ -64,12 +109,6 @@ To build this project locally, you need:
   # Download from https://pandoc.org/installing.html
   ```
 
-### Optional (for development)
-
-- **Make** (build automation)
-- **Git** (version control)
-- **Node.js** (if adding build tools)
-
 ## 🚀 Local Development
 
 ### Quick Start
@@ -80,173 +119,206 @@ To build this project locally, you need:
    cd cv
    ```
 
-2. **Build all formats**
+2. **Install dependencies**
    ```bash
-   make all
+   npm install
    ```
 
-3. **Open the HTML version**
+3. **Start development server**
    ```bash
-   open index.html  # macOS
-   xdg-open index.html  # Linux
-   start index.html  # Windows
+   npm run dev
    ```
 
-### Individual Build Commands
+4. **Open your browser**
+   ```
+   http://localhost:3000
+   ```
+
+### Available Scripts
 
 ```bash
-# Build HTML only
-make html
+# Parse cv.tex and extract data to cv-data.json
+npm run parse
 
-# Build PDF only
-make pdf
+# Start development server (parses CV first, then starts Next.js dev server)
+npm run dev
 
-# Build DOCX only
-make docx
+# Build for production (parses CV first, then builds static site)
+npm run build
 
-# Clean build artifacts
-make clean
+# Start production server (after build)
+npm start
 
-# Validate HTML
-make validate
+# Run linter
+npm run lint
 
-# Run accessibility tests
-make a11y-test
+# Build and export static site
+npm run export
 ```
 
-## 🏗️ Build Process
+### Development Workflow
 
-### How It Works
-
-1. **Source**: Edit `cv.tex` with your resume content
-2. **Template**: `template.html` provides the HTML structure
-3. **Styling**: `styles.css` contains all visual styles
-4. **Interactivity**: `script.js` handles navigation and accessibility
-5. **Conversion**: Pandoc converts LaTeX → HTML/PDF/DOCX
-6. **Deployment**: GitHub Actions automatically builds and deploys
-
-### Pandoc Conversion
-
-```bash
-# HTML generation with custom template
-pandoc cv.tex \
-  -o index.html \
-  --standalone \
-  --self-contained \
-  --template=template.html \
-  --metadata title="Muzamil Ahmed - CV"
-
-# PDF generation
-pandoc cv.tex \
-  -o cv.pdf \
-  --pdf-engine=xelatex
-
-# DOCX generation
-pandoc cv.tex \
-  -o cv.docx
-```
+1. **Edit Content**: Update `cv.tex` with your information
+2. **Parse**: Run `npm run parse` to extract data (or just run `npm run dev`)
+3. **Develop**: The dev server will hot-reload on component changes
+4. **Build**: Run `npm run build` to create production build
 
 ## 📁 Project Structure
 
 ```
 cv/
-├── cv.tex                          # LaTeX source (edit this!)
-├── template.html                   # HTML template
-├── styles.css                      # Stylesheet with CSS variables
-├── script.js                       # Navigation and accessibility
-├── Makefile                        # Build automation
+├── app/
+│   ├── layout.tsx              # Root layout with metadata
+│   ├── page.tsx                # Main page component
+│   └── globals.css             # Global styles and Tailwind imports
+├── components/
+│   ├── Header.tsx              # Name, title, contact info
+│   ├── Introduction.tsx        # Professional summary
+│   ├── Skills.tsx              # Technical skills
+│   ├── Experience.tsx          # Work experience
+│   ├── Education.tsx           # Education history
+│   ├── Certifications.tsx      # Professional certifications
+│   ├── Publications.tsx        # Research publications
+│   └── Footer.tsx              # Social links and footer
 ├── .github/
 │   └── workflows/
-│       └── Build_Publish_CV.yml   # CI/CD pipeline
-├── .gitignore                      # Git ignore rules
-├── .editorconfig                   # Editor configuration
-├── README.md                       # This file
-├── LICENSE                         # Project license
-├── index.html                      # Generated HTML (output)
-├── cv.pdf                          # Generated PDF (output)
-└── cv.docx                         # Generated DOCX (output)
+│       └── Deploy_Cloudflare_Pages.yml  # CI/CD pipeline
+├── cv.tex                      # LaTeX source (EDIT THIS!)
+├── parse-cv.js                 # CV parser script
+├── cv-data.json                # Generated JSON data (auto-generated)
+├── cv.pdf                      # Generated PDF (auto-generated)
+├── next.config.js              # Next.js configuration
+├── tailwind.config.js          # Tailwind CSS configuration
+├── tsconfig.json               # TypeScript configuration
+├── postcss.config.js           # PostCSS configuration
+├── package.json                # Dependencies and scripts
+└── README.md                   # This file
 ```
 
 ## 🎨 Customization
 
 ### Updating Content
 
+**Option 1: Edit cv.tex (Recommended)**
+
 1. Edit `cv.tex` with your information
-2. Run `make all` to regenerate all formats
-3. Preview `index.html` in your browser
+2. Run `npm run parse` to regenerate `cv-data.json`
+3. Run `npm run dev` to preview changes
+
+**Option 2: Edit Components Directly**
+
+Modify individual component files in `components/` for custom layouts or additional sections.
 
 ### Changing Colors/Theme
 
-Edit CSS variables in `styles.css`:
+Edit `tailwind.config.js`:
 
-```css
-:root {
-    /* Primary colors */
-    --color-primary: #00ffff;        /* Cyan - main accent */
-    --color-primary-dark: #0099ff;   /* Blue - secondary accent */
-
-    /* Text colors */
-    --color-text-primary: #e4e6eb;   /* Light gray */
-    --color-text-secondary: #a8b2d1; /* Medium gray */
-
-    /* Background colors */
-    --color-bg-dark: #0a0e27;        /* Dark blue */
-    --color-bg-mid: #1a1f3a;         /* Mid blue */
+```javascript
+theme: {
+  extend: {
+    colors: {
+      primary: '#00ffff',           // Cyan - main accent
+      'primary-dark': '#0099ff',    // Blue - secondary accent
+      'bg-dark': '#0a0e27',         // Dark blue background
+      'bg-mid': '#1a1f3a',          // Mid blue background
+      'text-primary': '#e4e6eb',    // Light gray text
+      'text-secondary': '#a8b2d1',  // Medium gray text
+    },
+  },
 }
 ```
 
+### Adding New Sections
+
+1. **Update cv.tex**: Add new LaTeX section
+2. **Update parse-cv.js**: Add parsing logic for the new section
+3. **Create Component**: Add new React component in `components/`
+4. **Update page.tsx**: Import and render the new component
+
 ### Modifying Layout
 
-- **Spacing**: Adjust spacing variables in `styles.css`
-- **Typography**: Modify font-size variables
-- **Breakpoints**: Update media queries for different responsive behavior
-
-### Adding Sections
-
-1. Add content to `cv.tex` using LaTeX sections
-2. Sections are automatically added to navigation
-3. Pandoc converts LaTeX sections to HTML `<section>` elements
+- **Global Layout**: Edit `app/layout.tsx` for HTML structure and metadata
+- **Page Layout**: Edit `app/page.tsx` for component order and spacing
+- **Component Styles**: Use Tailwind classes in component files
 
 ## 🚀 Deployment
 
-### GitHub Pages (Automatic)
+### Cloudflare Pages (Automatic)
 
 The project uses GitHub Actions for automatic deployment:
 
-1. Push changes to the `main` branch
-2. GitHub Actions builds HTML/PDF/DOCX
-3. Site deploys to `https://[username].github.io/cv/`
+1. Push changes to the `main` branch or any `claude/**` branch
+2. GitHub Actions:
+   - Installs dependencies
+   - Parses cv.tex to generate cv-data.json
+   - Generates PDF from cv.tex using Pandoc
+   - Builds Next.js static site
+   - Copies PDF to output directory
+   - Deploys to Cloudflare Pages
+3. Site deploys to production or preview URL
+
+### Branch Previews
+
+Every push to a `claude/**` branch creates a preview deployment:
+- **Main branch**: Deploys to production (`www.muzamil.fi`)
+- **Feature branches**: Deploy to preview URLs (visible in GitHub Actions summary)
 
 ### Manual Deployment
 
-1. Build locally: `make all`
-2. Copy `index.html`, `cv.pdf`, `cv.docx`, `styles.css`, `script.js` to your web server
-3. Ensure proper MIME types are set
+1. Build locally:
+   ```bash
+   npm run build
+   ```
 
-## ♿ Accessibility
+2. Generate PDF (optional):
+   ```bash
+   pandoc cv.tex -s -o cv.pdf --pdf-engine=xelatex --variable geometry:margin=1in
+   cp cv.pdf out/cv.pdf
+   ```
 
-This project follows WCAG 2.1 Level AA standards:
+3. Deploy the `out/` directory to your hosting provider
 
-- ✅ **Keyboard Navigation**: Full keyboard support with arrow keys
-- ✅ **Screen Readers**: ARIA labels and live regions
-- ✅ **Focus Management**: Visible focus indicators
-- ✅ **Reduced Motion**: Respects `prefers-reduced-motion`
-- ✅ **Color Contrast**: Meets WCAG contrast ratios
-- ✅ **Semantic HTML**: Proper heading hierarchy and landmarks
-- ✅ **Skip Links**: Skip-to-content for keyboard users
+## 🔧 Build Process
 
-### Testing Accessibility
+### Complete Build Pipeline
 
-```bash
-# Run accessibility tests (requires npm packages)
-make a11y-test
-
-# Manual testing checklist:
-# - Tab through all navigation
-# - Test with screen reader (VoiceOver, NVDA, JAWS)
-# - Verify color contrast
-# - Test print styles
+```mermaid
+cv.tex
+  ├─> parse-cv.js ─> cv-data.json ─> React Components ─> Next.js Build ─> Static Site (out/)
+  └─> Pandoc + XeLaTeX ──────────────────────────────> cv.pdf ────────────> out/cv.pdf
 ```
+
+### Detailed Steps
+
+1. **Parse LaTeX Source**
+   ```bash
+   node parse-cv.js
+   # Reads cv.tex
+   # Extracts: name, title, skills, experience, education, etc.
+   # Outputs: cv-data.json
+   ```
+
+2. **Build Next.js Application**
+   ```bash
+   next build
+   # Reads cv-data.json
+   # Renders React components
+   # Generates static HTML/CSS/JS
+   # Outputs: out/ directory
+   ```
+
+3. **Generate PDF**
+   ```bash
+   pandoc cv.tex -s -o cv.pdf --pdf-engine=xelatex
+   # Converts LaTeX to PDF
+   # Outputs: cv.pdf
+   ```
+
+4. **Deploy**
+   ```bash
+   # GitHub Actions copies cv.pdf to out/
+   # Deploys out/ to Cloudflare Pages
+   ```
 
 ## 🌐 Browser Support
 
@@ -256,34 +328,50 @@ make a11y-test
 - ✅ Mobile browsers (iOS Safari, Chrome Mobile)
 - ⚠️ Internet Explorer: Not supported
 
-### Graceful Degradation
+### Progressive Enhancement
 
-- Fallback colors for unsupported gradient text
-- Alternative background for browsers without `backdrop-filter`
-- `<noscript>` fallback for disabled JavaScript
+- CSS Grid and Flexbox for layouts
+- CSS Custom Properties (via Tailwind)
+- Modern JavaScript (ES6+)
+- Graceful degradation for older browsers
 
 ## 🔧 Troubleshooting
 
-### Build Errors
+### Development Issues
 
-**Error**: `pandoc: command not found`
-- **Solution**: Install Pandoc (see [Prerequisites](#prerequisites))
+**Issue**: `Module not found` errors
+- **Solution**: Run `npm install` to install dependencies
 
-**Error**: `! LaTeX Error: File 'geometry.sty' not found`
-- **Solution**: Install full TeX distribution with all packages
+**Issue**: CV data not updating
+- **Solution**: Run `npm run parse` to regenerate `cv-data.json`
 
-**Error**: Navigation not working
-- **Solution**: Ensure `script.js` is loaded and check browser console
+**Issue**: Port 3000 already in use
+- **Solution**: Kill the process on port 3000 or set a different port:
+  ```bash
+  PORT=3001 npm run dev
+  ```
 
-### Styling Issues
+### Build Issues
 
-**Issue**: Gradient text showing as black
-- **Cause**: Browser doesn't support `-webkit-background-clip`
-- **Solution**: Fallback color is automatically applied
+**Issue**: `pandoc: command not found` during CI
+- **Solution**: Pandoc is installed automatically in GitHub Actions
 
-**Issue**: Glassmorphism effect not showing
-- **Cause**: Browser doesn't support `backdrop-filter`
-- **Solution**: Solid background fallback is provided
+**Issue**: TypeScript errors
+- **Solution**: Run `npm run lint` to check for errors
+
+**Issue**: Build fails with memory error
+- **Solution**: Increase Node.js memory:
+  ```bash
+  NODE_OPTIONS=--max-old-space-size=4096 npm run build
+  ```
+
+### PDF Generation Issues
+
+**Issue**: PDF not generated
+- **Solution**: Ensure LaTeX and Pandoc are installed (see [Prerequisites](#prerequisites))
+
+**Issue**: LaTeX errors
+- **Solution**: Check cv.tex syntax, ensure all packages are installed
 
 ## 🤝 Contributing
 
@@ -297,11 +385,12 @@ Contributions are welcome! Please:
 
 ### Development Guidelines
 
+- Use TypeScript for all new components
 - Follow existing code style
+- Use Tailwind CSS for styling (avoid custom CSS)
 - Test in multiple browsers
 - Ensure accessibility is maintained
 - Update documentation as needed
-- Add tests for new features
 
 ## 📄 License
 
@@ -311,25 +400,30 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Muzamil Ahmed**
 
+- Website: [www.muzamil.fi](https://www.muzamil.fi)
 - GitHub: [@muzahm01](https://github.com/muzahm01)
 - LinkedIn: [muzamilahmed](https://linkedin.com/in/muzamilahmed)
 
 ## 🙏 Acknowledgments
 
-- [Pandoc](https://pandoc.org/) for document conversion
-- [TeX Live](https://www.tug.org/texlive/) for LaTeX processing
-- [GitHub Pages](https://pages.github.com/) for hosting
-- [WCAG](https://www.w3.org/WAI/WCAG21/quickref/) for accessibility guidelines
+- [Next.js](https://nextjs.org/) - React framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- [Pandoc](https://pandoc.org/) - Document conversion
+- [Cloudflare Pages](https://pages.cloudflare.com/) - Hosting and CDN
+- [React Icons](https://react-icons.github.io/react-icons/) - Icon library
+- [Google Fonts](https://fonts.google.com/) - Inter font
 
 ## 📚 Resources
 
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 - [Pandoc User's Guide](https://pandoc.org/MANUAL.html)
-- [LaTeX Documentation](https://www.latex-project.org/help/documentation/)
-- [Web Accessibility](https://www.w3.org/WAI/)
-- [MDN Web Docs](https://developer.mozilla.org/)
+- [Cloudflare Pages Docs](https://developers.cloudflare.com/pages/)
 
 ---
 
-**Note**: Remember to update personal information in `cv.tex`, meta tags in `template.html`, and this README before deploying.
+**Note**: Update your information in `cv.tex` and metadata in `app/layout.tsx` before deploying.
 
 For questions or issues, please [open an issue](https://github.com/muzahm01/cv/issues) on GitHub.
