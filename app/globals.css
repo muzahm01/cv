@@ -13,6 +13,10 @@
     @apply bg-bg-mid/40 backdrop-blur-md border border-primary/20 rounded-xl p-6 md:p-8 shadow-lg hover:shadow-primary/10 transition-all duration-300;
   }
 
+  .glass-panel {
+    @apply bg-bg-mid/40 backdrop-blur-md border border-primary/20 shadow-lg;
+  }
+
   .gradient-text {
     @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
   }
@@ -60,7 +64,12 @@
   .text-primary,
   .text-text-primary,
   .text-text-secondary,
-  h1, h2, h3, h4, h5, h6,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
   a {
     background: none !important;
     color: black !important;
@@ -137,7 +146,8 @@
   }
 
   section div[class*="absolute"] {
-    display: none !important; /* Hide timeline dots */
+    display: none !important;
+    /* Hide timeline dots */
   }
 
   /* Experience items */
@@ -157,7 +167,7 @@
     display: block !important;
   }
 
-  section div[class*="grid"] > div {
+  section div[class*="grid"]>div {
     margin: 0.3rem 0 !important;
     padding: 0.3rem !important;
     border: 1px solid #ccc !important;
@@ -192,7 +202,10 @@
   }
 
   /* Ensure no widows/orphans */
-  p, li, h2, h3 {
+  p,
+  li,
+  h2,
+  h3 {
     orphans: 3;
     widows: 3;
   }
@@ -207,4 +220,3 @@
     margin: 0.3rem 0 !important;
   }
 }
-
