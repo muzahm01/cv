@@ -46,10 +46,11 @@ function parseCVTeX(texContent) {
   // Extract skills
   const skillsSection = texContent.match(/\\section\*\{Skills\}[^]*?(?=\\section)/s);
   if (skillsSection) {
-    const skillLines = skillsSection[0].match(/\\textbf\{([^}]+)\}:\s*([^\\]+)/g);
+    // Match \item[Category] Items format
+    const skillLines = skillsSection[0].match(/\\item\[([^\]]+)\]\s*([^\n\\]+)/g);
     if (skillLines) {
       skillLines.forEach(line => {
-        const match = line.match(/\\textbf\{([^}]+)\}:\s*([^\\]+)/);
+        const match = line.match(/\\item\[([^\]]+)\]\s*([^\n\\]+)/);
         if (match) {
           data.skills.push({
             category: match[1],
