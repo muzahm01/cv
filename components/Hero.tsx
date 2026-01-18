@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, Github, Linkedin, Mail, Terminal, Activity, CheckCircle2, Zap } from 'lucide-react'
+import { ArrowRight, Github, Linkedin, Mail, Terminal, Activity, Building2, Award } from 'lucide-react'
 
-// Metrics data representing key achievements
+// Metrics data representing factual achievements
 const metrics = [
   {
     value: '10+',
@@ -13,15 +13,15 @@ const metrics = [
     status: 'operational',
   },
   {
-    value: '25%',
-    label: 'Defect Reduction',
-    icon: CheckCircle2,
+    value: '4',
+    label: 'Companies',
+    icon: Building2,
     status: 'operational',
   },
   {
-    value: '20%',
-    label: 'Faster CI Builds',
-    icon: Zap,
+    value: '3',
+    label: 'Certifications',
+    icon: Award,
     status: 'operational',
   },
   {
