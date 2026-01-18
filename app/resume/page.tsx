@@ -5,7 +5,7 @@ import Experience from '@/components/Experience'
 import Education from '@/components/Education'
 import Certifications from '@/components/Certifications'
 import Publications from '@/components/Publications'
-import References from '@/components/References'
+
 
 export default function Resume() {
     return (
@@ -18,7 +18,7 @@ export default function Resume() {
                 <Education />
                 <Certifications />
                 <Publications />
-                <References />
+
             </div>
         </main>
     )

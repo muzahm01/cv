@@ -1,9 +1,21 @@
 import Hero from '@/components/Hero'
+import Skills from '@/components/Skills'
+
+import Experience from '@/components/ExperienceTimeline'
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
+      {/* Hero Section - Quality Dashboard */}
       <Hero />
-    </main>
+
+      {/* Technical Stack - Bento Grid */}
+      <Skills />
+
+
+
+      {/* Experience Timeline */}
+      <Experience />
+    </>
   )
 }
