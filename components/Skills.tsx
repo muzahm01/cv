@@ -21,7 +21,7 @@ const skillCategories = [
     description: 'Frameworks & tools',
     skills: ['Pytest', 'Appium'],
     gridClass: 'md:col-span-1 md:row-span-1',
-    accent: false,
+    accent: true,
   },
   {
     id: 'mobile',
@@ -30,7 +30,7 @@ const skillCategories = [
     description: 'Platform expertise',
     skills: ['Android', 'iOS'],
     gridClass: 'md:col-span-1 md:row-span-1',
-    accent: false,
+    accent: true,
   },
   {
     id: 'infrastructure',
@@ -42,22 +42,22 @@ const skillCategories = [
     accent: true,
   },
   {
-    id: 'testing-types',
-    title: 'Testing Types',
-    icon: FileCheck,
-    description: 'Methodologies & approaches',
-    skills: ['Integration', 'Smoke', 'Acceptance', 'E2E', 'Regression', 'Exploratory'],
-    gridClass: 'md:col-span-2 md:row-span-1',
-    accent: false,
-  },
-  {
     id: 'planning',
     title: 'Test Planning',
     icon: GitBranch,
     description: 'Documentation & strategy',
     skills: ['Test Plans', 'Test Cases', 'Test Scripts', 'Framework Design'],
     gridClass: 'md:col-span-1 md:row-span-1',
-    accent: false,
+    accent: true,
+  },
+  {
+    id: 'testing-types',
+    title: 'Testing Types',
+    icon: FileCheck,
+    description: 'Methodologies & approaches',
+    skills: ['Integration', 'Smoke', 'Acceptance', 'E2E', 'Regression', 'Exploratory'],
+    gridClass: 'md:col-span-2 md:row-span-1',
+    accent: true,
   },
   {
     id: 'collaboration',
@@ -66,7 +66,7 @@ const skillCategories = [
     description: 'Team practices',
     skills: ['Cross-functional Teams', 'Design Discussions', 'Pair Programming'],
     gridClass: 'md:col-span-1 md:row-span-1',
-    accent: false,
+    accent: true,
   },
   {
     id: 'issue-tracking',
@@ -74,8 +74,8 @@ const skillCategories = [
     icon: Bug,
     description: 'Quality management',
     skills: ['Defect Reporting', 'Bug Tracking', 'Regression Automation'],
-    gridClass: 'md:col-span-1 md:row-span-1',
-    accent: false,
+    gridClass: 'md:col-span-3 md:row-span-1',
+    accent: true,
   },
 ]
 
@@ -130,9 +130,8 @@ export default function Skills() {
               <motion.div
                 key={category.id}
                 variants={itemVariants}
-                className={`stack-category group ${category.gridClass} ${
-                  category.accent ? 'border-cyber-green/20' : ''
-                }`}
+                className={`stack-category group ${category.gridClass} ${category.accent ? 'border-cyber-green/20' : ''
+                  }`}
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-4">
@@ -154,11 +153,10 @@ export default function Skills() {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className={`skill-badge ${
-                        category.accent
+                      className={`skill-badge ${category.accent
                           ? 'border-cyber-green/30 text-cyber-green bg-cyber-green/5'
                           : ''
-                      }`}
+                        }`}
                     >
                       {skill}
                     </span>
