@@ -8,8 +8,6 @@ import { clsx } from 'clsx'
 const navItems = [
   { name: 'Home', path: '/' },
   { name: 'Resume', path: '/resume' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Contact', path: '/contact' },
 ]
 
 export default function Navbar() {
