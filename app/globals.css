@@ -3,29 +3,226 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-gradient-to-br from-bg-dark via-bg-mid to-bg-dark text-text-primary;
+    @apply bg-obsidian text-text-primary antialiased;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-obsidian;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-obsidian-lighter rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-text-muted;
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-cyber-green/20 text-cyber-green;
   }
 }
 
 @layer components {
+  /* ========================================
+     ENGINEERING BLUEPRINT DESIGN SYSTEM
+     ======================================== */
+
+  /* Blueprint Grid Background */
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .blueprint-grid-dense {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Bento Grid Card - Low opacity borders */
+  .bento-card {
+    @apply relative bg-obsidian-light/50 border border-grid-line backdrop-blur-sm;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .bento-card:hover {
+    @apply border-grid-line-active bg-obsidian-light/70;
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.05);
+  }
+
+  /* Status Indicator - System Healthy */
+  .status-online {
+    @apply inline-flex items-center gap-2;
+  }
+
+  .status-online::before {
+    content: '';
+    @apply w-2 h-2 rounded-full bg-cyber-green animate-pulse;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+  }
+
+  /* Metric Card for Dashboard */
+  .metric-card {
+    @apply bento-card p-4 md:p-6;
+  }
+
+  .metric-value {
+    @apply font-mono text-3xl md:text-4xl font-bold text-cyber-green;
+    text-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  }
+
+  .metric-label {
+    @apply font-mono text-xs md:text-sm text-text-secondary uppercase tracking-wider mt-2;
+  }
+
+  /* Terminal-style text */
+  .terminal-text {
+    @apply font-mono text-cyber-green;
+  }
+
+  .terminal-prompt::before {
+    content: '>';
+    @apply text-cyber-green mr-2;
+  }
+
+  /* Blueprint Section Headers */
+  .section-header {
+    @apply font-mono text-xl md:text-2xl font-semibold text-text-primary mb-8;
+    @apply flex items-center gap-4;
+  }
+
+  .section-header::before {
+    content: '//';
+    @apply text-cyber-green;
+  }
+
+  .section-header::after {
+    content: '';
+    @apply flex-1 h-px bg-gradient-to-r from-grid-line to-transparent;
+  }
+
+  /* Legacy section-card with Blueprint aesthetic */
   .section-card {
-    @apply bg-bg-mid/40 backdrop-blur-md border border-primary/20 rounded-xl p-6 md:p-8 shadow-lg hover:shadow-primary/10 transition-all duration-300;
+    @apply bento-card p-6 md:p-8;
   }
 
+  /* Glass panel - minimalist version */
   .glass-panel {
-    @apply bg-bg-mid/40 backdrop-blur-md border border-primary/20 shadow-lg;
+    @apply bg-obsidian-light/30 backdrop-blur-md border border-grid-line;
   }
 
+  /* Gradient text - Cyber Green variant */
   .gradient-text {
-    @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-cyber-green to-electric-blue bg-clip-text text-transparent;
   }
 
+  /* Skill badge - Blueprint style */
   .skill-badge {
-    @apply inline-block px-3 py-1 bg-primary/10 border border-primary/30 rounded-full text-sm text-primary hover:bg-primary/20 transition-colors;
+    @apply inline-flex items-center px-3 py-1.5 font-mono text-xs;
+    @apply bg-obsidian border border-grid-line text-text-secondary;
+    @apply hover:border-cyber-green/30 hover:text-cyber-green transition-all duration-200;
+  }
+
+  /* Tech Stack Category */
+  .stack-category {
+    @apply bento-card p-4 md:p-6;
+  }
+
+  .stack-category-header {
+    @apply font-mono text-sm text-text-muted uppercase tracking-widest mb-4;
+    @apply flex items-center gap-2;
+  }
+
+  .stack-category-header::before {
+    content: '';
+    @apply w-1 h-4 bg-cyber-green;
+  }
+
+  /* Project Card */
+  .project-card {
+    @apply bento-card p-6 overflow-hidden;
+  }
+
+  .project-card-badge {
+    @apply inline-flex items-center gap-1.5 px-2 py-1 font-mono text-xs;
+    @apply bg-cyber-green/10 text-cyber-green border border-cyber-green/20;
+  }
+
+  /* CTA Button - Industrial style */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 font-mono text-sm font-medium;
+    @apply bg-transparent border border-cyber-green text-cyber-green;
+    @apply hover:bg-cyber-green hover:text-obsidian transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-cyber-green/50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 font-mono text-sm font-medium;
+    @apply bg-transparent border border-grid-line text-text-secondary;
+    @apply hover:border-text-secondary hover:text-text-primary transition-all duration-200;
+  }
+
+  /* Navigation - Blueprint style */
+  .nav-link {
+    @apply font-mono text-sm text-text-secondary;
+    @apply hover:text-cyber-green transition-colors duration-200;
+    @apply relative;
+  }
+
+  .nav-link.active {
+    @apply text-cyber-green;
+  }
+
+  .nav-link.active::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 right-0 h-px bg-cyber-green;
+  }
+
+  /* Timeline - Blueprint variant */
+  .timeline-line {
+    @apply border-l border-grid-line;
+  }
+
+  .timeline-dot {
+    @apply w-3 h-3 bg-obsidian border-2 border-cyber-green;
+    @apply absolute -left-1.5 top-1;
+  }
+
+  /* Code/Data display */
+  .data-display {
+    @apply font-mono text-sm bg-obsidian border border-grid-line p-4;
+    @apply text-text-secondary;
+  }
+
+  .data-key {
+    @apply text-electric-blue;
+  }
+
+  .data-value {
+    @apply text-cyber-green;
   }
 }
 
+/* ========================================
+   PRINT STYLES
+   ======================================== */
 @media print {
   * {
     -webkit-print-color-adjust: exact !important;
@@ -44,13 +241,12 @@
     line-height: 1.3 !important;
   }
 
-  /* Hide download button and other UI elements */
   .no-print {
     display: none !important;
   }
 
-  /* Remove all cards styling and backgrounds */
-  .section-card {
+  .section-card,
+  .bento-card {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -59,27 +255,22 @@
     page-break-inside: avoid;
   }
 
-  /* Simple black text */
   .gradient-text,
   .text-primary,
   .text-text-primary,
   .text-text-secondary,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  a {
+  .terminal-text,
+  .metric-value,
+  h1, h2, h3, h4, h5, h6, a {
     background: none !important;
     color: black !important;
     background-clip: unset !important;
     -webkit-background-clip: unset !important;
     text-fill-color: black !important;
     -webkit-text-fill-color: black !important;
+    text-shadow: none !important;
   }
 
-  /* Remove skill badges styling */
   .skill-badge {
     background: transparent !important;
     border: 1px solid #666 !important;
@@ -89,7 +280,6 @@
     font-size: 9pt !important;
   }
 
-  /* Compact header */
   header {
     margin-bottom: 0.5rem !important;
     padding: 0 !important;
@@ -105,13 +295,6 @@
     margin: 0.1rem 0 !important;
   }
 
-  header .flex {
-    gap: 0.5rem !important;
-    margin: 0.3rem 0 !important;
-    font-size: 9pt !important;
-  }
-
-  /* Section headings */
   section h2 {
     font-size: 14pt !important;
     font-weight: bold !important;
@@ -120,16 +303,10 @@
     border-bottom: 1px solid black !important;
   }
 
-  /* Section paragraphs and text */
   section p {
     font-size: 10pt !important;
     margin: 0.2rem 0 !important;
     line-height: 1.3 !important;
-  }
-
-  /* Skills section - more compact */
-  section div[class*="space-y"] {
-    margin: 0.2rem 0 !important;
   }
 
   section h3 {
@@ -138,19 +315,12 @@
     margin: 0.3rem 0 0.1rem 0 !important;
   }
 
-  /* Experience timeline - remove decorations */
   section div[class*="border-l"] {
     border-left: 2px solid black !important;
     padding-left: 0.5rem !important;
     margin-bottom: 0.4rem !important;
   }
 
-  section div[class*="absolute"] {
-    display: none !important;
-    /* Hide timeline dots */
-  }
-
-  /* Experience items */
   section ul {
     margin: 0.2rem 0 0.2rem 0.8rem !important;
     padding: 0 !important;
@@ -162,61 +332,25 @@
     line-height: 1.3 !important;
   }
 
-  /* Education and certifications - compact */
-  section div[class*="grid"] {
-    display: block !important;
-  }
-
-  section div[class*="grid"]>div {
-    margin: 0.3rem 0 !important;
-    padding: 0.3rem !important;
-    border: 1px solid #ccc !important;
-    background: transparent !important;
-  }
-
-  /* Publications - smaller text */
-  section div[class*="border-l-2"] {
-    border-left: 2px solid #999 !important;
-    padding-left: 0.4rem !important;
-    margin: 0.2rem 0 !important;
-  }
-
-  /* Footer - minimal */
   footer {
     margin-top: 0.5rem !important;
     padding: 0.3rem 0 !important;
     border-top: 1px solid #ccc !important;
   }
 
-  footer h2 {
-    font-size: 11pt !important;
-  }
-
-  footer p {
-    font-size: 9pt !important;
-  }
-
-  /* Page breaks */
   section:nth-of-type(4) {
     page-break-before: always;
   }
 
-  /* Ensure no widows/orphans */
-  p,
-  li,
-  h2,
-  h3 {
+  p, li, h2, h3 {
     orphans: 3;
     widows: 3;
   }
 
-  /* Remove extra spacing */
-  .max-w-5xl {
+  .max-w-5xl,
+  .max-w-6xl,
+  .max-w-7xl {
     max-width: 100% !important;
     padding: 0 !important;
-  }
-
-  div[class*="space-y"] {
-    margin: 0.3rem 0 !important;
   }
 }
