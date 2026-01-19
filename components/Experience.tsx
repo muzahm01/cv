@@ -4,7 +4,7 @@ export default function Experience() {
   const experiences = cvData.experience
 
   return (
-    <section className="section-card">
+    <section id="experience" className="section-card">
       <h2 className="text-3xl font-bold mb-6 gradient-text">Professional Experience</h2>
       <div className="space-y-8">
         {experiences.map((exp, index) => (

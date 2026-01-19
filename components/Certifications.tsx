@@ -4,7 +4,7 @@ export default function Certifications() {
   const certifications = cvData.certifications
 
   return (
-    <section className="section-card">
+    <section id="certifications" className="section-card">
       <h2 className="text-3xl font-bold mb-6 gradient-text">Certifications</h2>
       <div className="grid gap-4 md:grid-cols-2">
         {certifications.map((cert, index) => (
