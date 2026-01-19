@@ -11,24 +11,28 @@ const metrics = [
     label: 'Years Experience',
     icon: Activity,
     status: 'operational',
+    href: '/resume#experience',
   },
   {
     value: '4',
     label: 'Companies',
     icon: Building2,
     status: 'operational',
+    href: '/resume#experience',
   },
   {
     value: '3',
     label: 'Certifications',
     icon: Award,
     status: 'operational',
+    href: '/resume#certifications',
   },
   {
     value: '3',
     label: 'Publications',
     icon: Terminal,
     status: 'operational',
+    href: '/resume#publications',
   },
 ]
 
@@ -113,16 +117,20 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + index * 0.1, duration: 0.4 }}
-                className="metric-card group"
               >
-                <div className="flex items-start justify-between mb-3">
-                  <metric.icon className="w-4 h-4 text-text-muted group-hover:text-cyber-green transition-colors" />
-                  <div className="flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyber-green" />
+                <Link
+                  href={metric.href}
+                  className="metric-card group block hover:border-cyber-green/50 hover:bg-cyber-green/5 transition-all duration-300"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <metric.icon className="w-4 h-4 text-text-muted group-hover:text-cyber-green transition-colors" />
+                    <div className="flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyber-green" />
+                    </div>
                   </div>
-                </div>
-                <div className="metric-value">{metric.value}</div>
-                <div className="metric-label">{metric.label}</div>
+                  <div className="metric-value group-hover:text-cyber-green transition-colors">{metric.value}</div>
+                  <div className="metric-label">{metric.label}</div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
